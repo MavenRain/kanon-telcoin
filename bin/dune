@@ -1,0 +1,3 @@
+(executable
+ (name main)
+ (libraries kanon_telcoin kanon_kernel zarith))

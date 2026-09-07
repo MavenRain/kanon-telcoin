@@ -1,0 +1,16 @@
+import KanonTelcoin
+
+#print axioms KanonTelcoin.NatFragmentBridge.typed_substitution
+#print axioms KanonTelcoin.NatFragmentBridge.fromSum_toSum
+#print axioms KanonTelcoin.NatFragmentBridge.induction_beta_zero
+#print axioms KanonTelcoin.NatFragmentBridge.induction_beta_succ
+#print axioms KanonTelcoin.NatFragmentBridge.case_beta_zero
+#print axioms KanonTelcoin.NatFragmentBridge.case_beta_succ
+#print axioms KanonTelcoin.NatFragmentBridge.case_beta_preservation
+#print axioms KanonTelcoin.NatFragmentBridge.guarded_realizes_elim
+#print axioms KanonTelcoin.NatFragmentBridge.motive_reindexing
+#print axioms KanonTelcoin.NatFragmentBridge.case_reindexing
+#print axioms KanonTelcoin.NatFragmentBridge.induction_reindexing
+#print axioms KanonTelcoin.NatFragmentBridge.observe_zero
+#print axioms KanonTelcoin.NatFragmentBridge.observe_succ
+#print axioms KanonTelcoin.NatFragmentBridge.zero_ne_succ_zero

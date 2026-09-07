@@ -1,0 +1,26 @@
+{
+  "chain_id": 2017,
+  "commit": "66e0d14a52b042a383b666d4b4da0079ec5b4871",
+  "evm_fork": "prague",
+  "live_network_verified": false,
+  "network": "source-testnet-profile",
+  "note": "Source compatibility pin; baseline EVM tests do not establish Telcoin consensus conformance.",
+  "prototype_fee_model_verified": false,
+  "prototype_uses_custom_precompiles": false,
+  "repository": "https://github.com/Telcoin-Association/telcoin-network",
+  "reth": {
+    "commit": "d6324d63e27ef6b7c49cdc9b1977c1b808234c7b",
+    "version": "1.11.3"
+  },
+  "revm": "34.0.0",
+  "schema": 1,
+  "source_evidence_sha256": {
+    "Cargo.lock": "00e516c63989b240009ab18495d7bb94e9eee5e02a6326b7a72ec68db1095bf8",
+    "chain-configs/mainnet/genesis.yaml": "fe9feee099f6cd1a69355f2e12761aa61485c8489e56a9dfea55b87f65740769",
+    "chain-configs/testnet/genesis.yaml": "670c94e3816686bd4da5aedbfa994d4f362452eaf2552b2757f05226608188c2",
+    "crates/tn-reth/src/evm/config.rs": "09ba9e9525c9013d14f8f6d35c56cdc0d328e6ccdb68fd00d5e7a16f2133255e",
+    "crates/tn-reth/src/evm/factory.rs": "0510f1e50b532ee841f73941892e8e56fdb209c55cc2d71d27b2a5e76d1ddc7f",
+    "docs/src/evm-compatibility.md": "6b5967fedc84a4d481894e19c3d43ee920c1aefabc3ef33f4c293619312cbc36"
+  },
+  "telcoin_execution_verified": false
+}

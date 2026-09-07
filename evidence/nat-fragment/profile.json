@@ -1,0 +1,41 @@
+{
+  "fixture": "foundation/fixtures/nat-fragment.kanon",
+  "fixture_sha256": "6840e3557691a07443fbb319210554733f9818e17e2389a8346a65c892b20659",
+  "profile": {
+    "case": {
+      "implicit_ih": false,
+      "scrutinee_quantity": "One",
+      "succ_binders": 1,
+      "zero_binders": 0
+    },
+    "family": "N",
+    "indices": 0,
+    "motive": {
+      "family": "N",
+      "indices": 0,
+      "self_db": 0
+    },
+    "parameters": 0,
+    "polynomial": "1+X",
+    "polynomial_index": "Unit",
+    "shape": "SMu",
+    "succ": {
+      "address": "succ",
+      "fields": [
+        {
+          "db": 0,
+          "quantity": "Many",
+          "type": "N"
+        }
+      ]
+    },
+    "universe": "Type0",
+    "zero": {
+      "address": "zero",
+      "fields": 0
+    }
+  },
+  "schema": 1,
+  "scope": "Checked source/schema agreement only; not a proof of OCaml checker or elaborator correctness",
+  "status": "passed"
+}

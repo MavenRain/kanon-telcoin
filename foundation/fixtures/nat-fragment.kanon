@@ -1,0 +1,40 @@
+mu N : Type 0 with
+| zero : N
+| succ : N -> N
+
+def observe : N -> N :=
+  fun (n : N) => case n as self in N return N with
+  | zero => zero
+  | succ predecessor => succ zero
+
+def Fiber : N -> Type 0 :=
+  fun (n : N) => case n as self in N return Type 0 with
+  | zero => N
+  | succ predecessor => prod (N, N)
+
+def dependentCase : (n : N) -> Fiber n :=
+  fun (n : N) => case n as self in N return Fiber self with
+  | zero => zero
+  | succ predecessor => tuple (predecessor, predecessor)
+
+def rec induction : (0 P : N -> Type 0) -> (z : P zero) ->
+  (s : (n : N) -> P n -> P (succ n)) -> (n : N) -> P n :=
+  fun (0 P : N -> Type 0) (z : P zero)
+    (s : (n : N) -> P n -> P (succ n)) (n : N) =>
+  case n as self in N return P self with
+  | zero => z
+  | succ predecessor => s predecessor (induction P z s predecessor)
+
+def fiberStep : (n : N) -> Fiber n -> Fiber (succ n) :=
+  fun (n : N) (previous : Fiber n) => tuple (n, n)
+
+def recursiveDependent : (n : N) -> Fiber n :=
+  fun (n : N) => induction Fiber zero fiberStep n
+
+def constantN : N -> Type 0 := fun (n : N) => N
+
+def doubleStep : N -> N -> N :=
+  fun (n : N) (previous : N) => succ (succ previous)
+
+def double : N -> N :=
+  fun (n : N) => induction constantN zero doubleStep n

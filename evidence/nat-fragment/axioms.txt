@@ -1,0 +1,14 @@
+'KanonTelcoin.NatFragmentBridge.typed_substitution' does not depend on any axioms
+'KanonTelcoin.NatFragmentBridge.fromSum_toSum' depends on axioms: [Quot.sound]
+'KanonTelcoin.NatFragmentBridge.induction_beta_zero' depends on axioms: [Quot.sound]
+'KanonTelcoin.NatFragmentBridge.induction_beta_succ' depends on axioms: [Quot.sound]
+'KanonTelcoin.NatFragmentBridge.case_beta_zero' depends on axioms: [propext, Quot.sound]
+'KanonTelcoin.NatFragmentBridge.case_beta_succ' depends on axioms: [propext, Quot.sound]
+'KanonTelcoin.NatFragmentBridge.case_beta_preservation' depends on axioms: [propext, Quot.sound]
+'KanonTelcoin.NatFragmentBridge.guarded_realizes_elim' depends on axioms: [propext, Quot.sound]
+'KanonTelcoin.NatFragmentBridge.motive_reindexing' does not depend on any axioms
+'KanonTelcoin.NatFragmentBridge.case_reindexing' depends on axioms: [propext]
+'KanonTelcoin.NatFragmentBridge.induction_reindexing' does not depend on any axioms
+'KanonTelcoin.NatFragmentBridge.observe_zero' does not depend on any axioms
+'KanonTelcoin.NatFragmentBridge.observe_succ' does not depend on any axioms
+'KanonTelcoin.NatFragmentBridge.zero_ne_succ_zero' does not depend on any axioms

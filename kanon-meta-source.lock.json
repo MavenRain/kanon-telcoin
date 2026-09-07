@@ -1,0 +1,24 @@
+{
+  "commit": "c4180626123687858ff83408bab801c6f87e3e71",
+  "files": {
+    "KanonMeta/Initiality.lean": {
+      "sha256": "acbb58441316d33bbe7c1afd2169e37d66cbbb36710628f7829f43a8247f3405",
+      "source": "meta/KanonMeta/Initiality.lean"
+    },
+    "LICENSE-APACHE": {
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "source": "LICENSE-APACHE"
+    },
+    "LICENSE-MIT": {
+      "sha256": "ef9ccd4eb670dc121b7b3d5b45dea0e8bec7b0ca4319f6665f9cafafff1c1d16",
+      "source": "LICENSE-MIT"
+    },
+    "lean-toolchain": {
+      "sha256": "62c2d9c0fc1ec4c67e151c11eff41ca004ef38e179cf9476c230406e6defedef",
+      "source": "meta/lean-toolchain"
+    }
+  },
+  "schema": 1,
+  "selection": "Conditional initiality module, pinned toolchain, and license files only",
+  "upstream": "kanon"
+}

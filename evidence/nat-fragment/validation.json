@@ -1,0 +1,154 @@
+{
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "scripts/vendor_kanon.py"
+      ],
+      "exit_code": 0,
+      "output": "Verified Kanon c4180626123687858ff83408bab801c6f87e3e71: 34 source files\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/verify_metatheory.py"
+      ],
+      "exit_code": 0,
+      "output": "Verified Kanon metatheory c4180626123687858ff83408bab801c6f87e3e71: 4 files\n"
+    },
+    {
+      "command": [
+        "dunecho",
+        "build"
+      ],
+      "exit_code": 0,
+      "output": "OK build: 0 errors, 0 warnings\n"
+    },
+    {
+      "command": [
+        "dune",
+        "runtest"
+      ],
+      "exit_code": 0,
+      "output": "NatFragmentBridge: 37 checks passed\n"
+    },
+    {
+      "command": [
+        "leancho",
+        "--warn"
+      ],
+      "exit_code": 0,
+      "output": "OK lake: 0 errors, 0 sorries, 0 warnings\n"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/compiler_cli.py"
+      ],
+      "exit_code": 0,
+      "output": "PASS byte-preserving artifact reruns and conflict refusal\nPASS source-map spans align with emitted instruction boundaries\nPASS reference evaluator validates even unused inputs\nPASS expensive constant expression rejected before kernel checking\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_nat_bridge.py",
+        "--report",
+        "evidence/nat-fragment/profile.json"
+      ],
+      "exit_code": 0,
+      "output": "PASS checked Kanon source profile agrees with the Lean bridge\n"
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "test/BridgeAxioms.lean"
+      ],
+      "exit_code": 0,
+      "output": "'KanonTelcoin.NatFragmentBridge.typed_substitution' does not depend on any axioms\n'KanonTelcoin.NatFragmentBridge.fromSum_toSum' depends on axioms: [Quot.sound]\n'KanonTelcoin.NatFragmentBridge.induction_beta_zero' depends on axioms: [Quot.sound]\n'KanonTelcoin.NatFragmentBridge.induction_beta_succ' depends on axioms: [Quot.sound]\n'KanonTelcoin.NatFragmentBridge.case_beta_zero' depends on axioms: [propext, Quot.sound]\n'KanonTelcoin.NatFragmentBridge.case_beta_succ' depends on axioms: [propext, Quot.sound]\n'KanonTelcoin.NatFragmentBridge.case_beta_preservation' depends on axioms: [propext, Quot.sound]\n'KanonTelcoin.NatFragmentBridge.guarded_realizes_elim' depends on axioms: [propext, Quot.sound]\n'KanonTelcoin.NatFragmentBridge.motive_reindexing' does not depend on any axioms\n'KanonTelcoin.NatFragmentBridge.case_reindexing' depends on axioms: [propext]\n'KanonTelcoin.NatFragmentBridge.induction_reindexing' does not depend on any axioms\n'KanonTelcoin.NatFragmentBridge.observe_zero' does not depend on any axioms\n'KanonTelcoin.NatFragmentBridge.observe_succ' does not depend on any axioms\n'KanonTelcoin.NatFragmentBridge.zero_ne_succ_zero' does not depend on any axioms\n"
+    }
+  ],
+  "date": "2026-09-07",
+  "directory": "/Users/oobi/Documents/kanon-telcoin",
+  "source_sha256": {
+    ".gitignore": "091513d944469a185ff6337ff8b24d3d3896d5aa21b8b2d6a6ee538208abe4be",
+    "FOUNDATION-OBLIGATIONS.md": "1ff303a43662ce4bed27352fd867c86999f3455e5b19abe0332ac33111a32fbe",
+    "KanonTelcoin.lean": "2d0f57509b62a8d0d51f54d04cf11c70e2eff627d8750d7c4edeea8081c33473",
+    "KanonTelcoin/NatFragmentBridge.lean": "974f366bb730bab6a354fe93cec431ef289474028ade1f62c7aa6f9a6bc396b5",
+    "NAT-FRAGMENT-BRIDGE.md": "e066d4215df451abff750ae1d6789b58ea577756e1c3ecad88a920269117821d",
+    "README.md": "a2b79354064590f40b554ff071f1aaae04e03b6564c69830d060b35229cccec5",
+    "TELCOIN-LANGUAGE-DESIGN.md": "3eac08a53cd2a7a0052a5e1e5f2be67ae82321f58887c2bba71672e3ecf3a8da",
+    "VALIDATION.md": "6d33ffff5267b76f1bef6f1f57299bbefd6478b57bbbfefa6b21d01e1e2081a6",
+    "bin/dune": "06f6b140b4bb6e8d92b59de97e1bd7a3e85fd187dd98c1369d9b20e743cc20c0",
+    "bin/main.ml": "6ec9ad6f1e96b7555d7952a97e4461fa0388a2b5dbec0d5b6c91260334ebfa82",
+    "dune": "6667ad12654ce90248a6069046368e6e8248aca243a72ddf3fd1fce750a9be86",
+    "dune-project": "60e27fdbe7a0843df3b4ecfaaefe1d394b5e09f315aeca6384dd65d30dd52c09",
+    "examples/counter.kan": "5d6b1febe22a559e8eaebf150df100b5356c156ed6ebfb61ebcfb60bf6427fff",
+    "examples/step_two.kan": "502b27458de0df39e4747de2f1370e53e783c437a143a6364e5237609ad20b75",
+    "foundation/README.md": "3bddf51ea3e2d8f9dfcd6b7549291b21361061398980b666eee1b6a8a82a4d74",
+    "foundation/fixtures/nat-fragment.kanon": "6840e3557691a07443fbb319210554733f9818e17e2389a8346a65c892b20659",
+    "kanon-meta-source.lock.json": "a6ed43b076581f878e96a1f536b7c4ecf6791e42b366777fde6e037a1651ee21",
+    "kanon-source.lock.json": "480e8fe14f513b9105b08e0bd504aa7fd936a7e4a24f0889fd1cef218757a978",
+    "lake-manifest.json": "cab21efeb6ba61ea940b6901f86c49491e2a48662fab38cffd1fa9abc75fc0d0",
+    "lakefile.lean": "32727ca1e30d2347c4336c22abb2a85ba4423514339f218a7916ee60144d62a8",
+    "lean-toolchain": "62c2d9c0fc1ec4c67e151c11eff41ca004ef38e179cf9476c230406e6defedef",
+    "lib/contract_ir.ml": "c6519ce209304bf6e511a34aefbe257240f7c0d6ca4cc4b92f35e7c97dd376f0",
+    "lib/dune": "05a075480430d025c27cae2bfb427edcde4c195c6b38496a9ebf52b22d7bdb30",
+    "lib/evm.ml": "eea436e790bdae3c911767e20f3a0a6388dcd6dbec29eceb386f6f18cf19f45a",
+    "lib/frontend.ml": "c8b1fe0467f93d2a6ac269e14fd49c5fe611f30986febf681158a3ecd8a6067b",
+    "lib/nat_fragment.ml": "8d22837609b2d4ffc00d47c64f9791e275a7085d4c97bc4afa5f8c9a090c6f3f",
+    "scripts/benchmark.py": "a71f16553048fd60ef7dfd4e65bba2de28ea7081d5035c0b459b3aac43f3445e",
+    "scripts/check_nat_bridge.py": "965615a88eca210581a85353e75523a73c7a23977f7d21572078cbe78f7631ee",
+    "scripts/kanonc.py": "f4cf24fe99a9510479ef0bc2c0e75b63b184c71641bf3d43cb7ace6b2649260e",
+    "scripts/vendor_kanon.py": "cb92cd7a58162500ea97bc1f2dad2edf96a21c45898bd033d9564ee8e3485ec7",
+    "scripts/verify_metatheory.py": "94eaa3a5e4fe118eb7ab213b43e75857454c1045e055d9450a959bec21551ce6",
+    "telcoin-target.json": "21db2aa48ec35661927de11975def612b5fe9cdd05927e0ba4165aa1e2a8aff0",
+    "test/BridgeAxioms.lean": "f8ad88ac8ebe574f7d3d978a621437d22f8f73386c1d3fc1dfc08fa87889c594",
+    "test/BridgeProfile.lean": "638d05e4ee252da6172c73801c006f1c7b9af4fd7d20e46f23622ca6f2a5353e",
+    "test/NatFragmentBridge.lean": "23dfd209a5285c9aa4233b80d3791d766b4b967e9f0988a747904e357cd70cc4",
+    "tests/compiler_cli.py": "e70d626a2dc23d008349479d499948e8b3d563af2dfaab0ba3d2e3505acc7ff3",
+    "tests/dune": "24e737ac6e3566818c500443e737928a646ad0ed79ac772f27c7c6ca73f3fcbe",
+    "tests/evm_integration.py": "e2a32697ef55129fe17bd534ddfd29beea9804ddddc7206aba6b6c4f51a8b66e",
+    "tests/nat_fragment.ml": "07d0a6ca8b88f9025e58b1b7d21bec6861e4f1814ce053944954cfd34f8924eb",
+    "third_party/kanon/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "third_party/kanon/LICENSE-MIT": "ef9ccd4eb670dc121b7b3d5b45dea0e8bec7b0ca4319f6665f9cafafff1c1d16",
+    "third_party/kanon/SPEC.md": "04d78a573f26466af4545d71beba5d8eb8eb49e4dc0d6859d19bc1153aa97323",
+    "third_party/kanon/lib/bignum.ml": "7159dd7e75fa08a5fc272cba76a8ec6214c7d190151dabf7db1a13bf5ecddd72",
+    "third_party/kanon/lib/budget.ml": "7d8b2afc86883415c892d6fea0e56c2115e4d859b6b6daa21c611b4e9517f028",
+    "third_party/kanon/lib/budget.mli": "b830149c9eb6d9362786d2e92c2dc8322f4d31f7b4cfc960ac6e1681d385578f",
+    "third_party/kanon/lib/check.ml": "cdc3712bf5ed0fa49d8dae34ea946d85a195ea94b25235c821b155570010e335",
+    "third_party/kanon/lib/conv.ml": "e73e707bcdac54808d8f8a1d9e9a174062edf0afd970972dee2c6d024f6bbe39",
+    "third_party/kanon/lib/dune": "0e60f3ebdbbf7182dba98dd70eb2d494bd83d6e2934dd1f344f98e4b0e392ec0",
+    "third_party/kanon/lib/erase.ml": "cb0078fa34f9527f79d7052e6cf39224717f2e1b891b0aa409c2374ffc3989c7",
+    "third_party/kanon/lib/error.ml": "44c9c263479575ec04db5056404a5940d6bb5514a5b9e1ec6215385c6eccb5b6",
+    "third_party/kanon/lib/eterm.ml": "028ff6e790f9c391463b961f7a3eac12e105d484285cfde1597e52c5b9ac69c7",
+    "third_party/kanon/lib/eval.ml": "155ddf7578d4ad68352505064616bed6afa7a260a88f3ddf1722b95fa6a6bd18",
+    "third_party/kanon/lib/global.ml": "2e5d2d932dfddcb329bcfdf237df87a70f2d79820470dc236e337ec6d275c329",
+    "third_party/kanon/lib/level.ml": "344bb9819870d8c459154ac8109ba1d69a4ee4312670f3887c6ed30d3dbca448",
+    "third_party/kanon/lib/level.mli": "c143b2b97e417724a81f8e83548b946d3339917488758b4d5fbf9da9e72e6811",
+    "third_party/kanon/lib/literal.ml": "80554b1d98c8dde3b474023a01ac57cc4abcaba2a5f20b707041cc5f0361b617",
+    "third_party/kanon/lib/order.ml": "d2cc3258fde25b61ba33093eaf19112c319329dc5b46ba029b3f042c14388e94",
+    "third_party/kanon/lib/positivity.ml": "97cb5fc9484ecaec360b4be1ac42f0668ae767aad25efc10ddbc1d4143185471",
+    "third_party/kanon/lib/pp.ml": "69618578ebb33a3d9803e604760252c77c64681aef2d847f3e1b40f9464e3895",
+    "third_party/kanon/lib/prim.ml": "5224df4f75e499b8fb962fad2a256b31086fcc9de5ab2f353eb90f61a8408aaa",
+    "third_party/kanon/lib/quantity.ml": "bf3f633c40a0dbb362cf85ca41b798ae0c9e1d4eca7e09f9b6f482bab2bfbb8b",
+    "third_party/kanon/lib/rules.ml": "b625cec31061ca79f77669889039e4ae2658393911e39076dc65189022f702ab",
+    "third_party/kanon/lib/shape.ml": "dafd7741b4332dcab6faba9cb9afb131fb3654172e0d375b1edd1046e69f7f7b",
+    "third_party/kanon/lib/spec_count.ml": "9a4cb97373ddbabb6156b04f92cc41803ee1b714391ccb669cf38e60d36437e6",
+    "third_party/kanon/lib/term.ml": "2de6729958bfbc3af10ed2e9c51d6591ab40fa16bd19b7acea1fbf37adf60690",
+    "third_party/kanon/lib/totality.ml": "046c608584ac21d465d46b05119a89dca5488a15113359eea30ed318a3f7c028",
+    "third_party/kanon/lib/value.ml": "997f4634df60744c49555e896c1de8d60e51a1086e731e547b48450def9c68c7",
+    "third_party/kanon/surface/dune": "c45bcc3721c5711848423635d08c3d5e41691bb32adda95efa0be17b7f3a3be4",
+    "third_party/kanon/surface/elab.ml": "050b7f83fb47f7b4f14387389fc13df728bac00a42d76c05d474b7bafe706437",
+    "third_party/kanon/surface/lexer.ml": "9e4a2e3ffa01228358f719c9578438231e5ef06e94e759713330da27f5edfcab",
+    "third_party/kanon/surface/parser.ml": "edc1ede2296297a194e8590bf2474156f30b88090e5055a4830a2714782f78f2",
+    "third_party/kanon/surface/syntax.ml": "ae240fb4c6350786d8919bb1fd91edb6c40d6359ac738c86295933be9a1352ae",
+    "third_party/kanon/surface/token.ml": "28066712011a4833c3aadb6069019a07a81b051f6f633ef6f110bfca83466c1c",
+    "third_party/kanon_meta/KanonMeta/Initiality.lean": "acbb58441316d33bbe7c1afd2169e37d66cbbb36710628f7829f43a8247f3405",
+    "third_party/kanon_meta/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "third_party/kanon_meta/LICENSE-MIT": "ef9ccd4eb670dc121b7b3d5b45dea0e8bec7b0ca4319f6665f9cafafff1c1d16",
+    "third_party/kanon_meta/lean-toolchain": "62c2d9c0fc1ec4c67e151c11eff41ca004ef38e179cf9476c230406e6defedef"
+  },
+  "status": "passed"
+}

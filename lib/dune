@@ -1,0 +1,3 @@
+(library
+ (name kanon_telcoin)
+ (libraries kanon_kernel kanon_surface zarith))
