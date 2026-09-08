@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from runpy import run_path
 import shutil
 import socket
 import subprocess
@@ -19,6 +20,11 @@ from urllib.request import ProxyHandler, Request, build_opener
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Load the owned corpus by exact path, including under Python's safe-path mode.
+CORPUS = run_path(str(ROOT / "tests/source_differential.py"))
+CASES = CORPUS["CASES"]
+evaluate = CORPUS["evaluate"]
+source_for = CORPUS["source_for"]
 MAX_WORD = (1 << 256) - 1
 DEFAULT_SOURCE = (
     "def step : (state : Nat) -> Nat := "
@@ -28,8 +34,10 @@ CAVEAT = (
     "This is a local baseline EVM test using the recorded Anvil version and its "
     "Prague mode. It does not establish conformance to a pinned Telcoin Network "
     "client, genesis, execution dependencies, precompiles, or live network. "
-    "The IR comparison uses partial uint256 execution with checked intermediate "
-    "results, not unrestricted natural-number computation or a compiler proof."
+    "The fixed differential corpus compares checked kernel evaluation before "
+    "erasure, checked uint256 IR execution, and EVM results. Source evaluation "
+    "uses natural arithmetic; intermediate overflow requires IR and EVM failure "
+    "even when the natural result fits uint256. This is not a compiler proof."
 )
 
 
@@ -163,16 +171,6 @@ class Suite:
         require(isinstance(artifact.get("sourceMap"), dict), "missing source map")
         return artifact
 
-    def eval(self, source: str, state: int, expected: int | None):
-        result = self.invoke(source, ["--eval", "step", str(state)])
-        if expected is None:
-            require(result.returncode == 2, f"overflow eval accepted: {result.stdout}")
-            require(not result.stdout.strip(), "overflow eval emitted a result")
-            require("overflow" in result.stderr.lower(), result.stderr)
-        else:
-            require(result.returncode == 0, f"IR evaluation failed: {result.stderr}")
-            require(json.loads(result.stdout) == {"value": str(expected)}, result.stdout)
-
     def negative_compilation(self):
         boolean_type = "sum ((prod () : Type 0), (prod () : Type 0))"
         negative_cases = [
@@ -198,6 +196,10 @@ class Suite:
             require("parse" not in result.stderr.lower(), f"{name}: malformed test syntax")
             if diagnostic is not None:
                 require(diagnostic in result.stderr.lower(), f"{name}: {result.stderr}")
+            source_result = self.invoke(source, ["--eval-source", entry, "0"])
+            require(source_result.returncode == 2 and not source_result.stdout
+                    and source_result.stderr,
+                    f"{name}: source oracle did not reject the unsupported input")
             self.record(name, diagnostic=result.stderr.strip())
 
     def deploy(self, node: LocalNode, owner: str, artifact: dict):
@@ -238,7 +240,7 @@ class Suite:
         self.record("initial_state_and_public_get")
         require(call_word(node, owner, address, inc) == 1, "increment preview is wrong")
         require(storage(node, address, 1) == 0, "eth_call persisted state")
-        self.eval(DEFAULT_SOURCE, 0, 1)
+        evaluate(self.compiler, DEFAULT_SOURCE, 0, 1, 1)
         receipt = node.send({"from": owner, "to": address, "data": inc})
         check_success(receipt)
         require(storage(node, address, 1) == 1, "increment did not persist")
@@ -293,44 +295,25 @@ class Suite:
         self.arithmetic(node, owner, get, inc, topic)
 
     def arithmetic(self, node, owner, get, inc, topic):
-        cases = [
-            ("add_two", "natAdd state 2", [(0, 2), (5, 7), (MAX_WORD - 2, MAX_WORD),
-                                             (MAX_WORD - 1, None)]),
-            ("saturating_sub", "natSub state 3", [(0, 0), (2, 0), (5, 2),
-                                                   (MAX_WORD, MAX_WORD - 3)]),
-            ("asymmetric_sub", "natSub 10 state", [(0, 10), (3, 7), (12, 0)]),
-            ("multiply", "natMul state 7", [(0, 0), (3, 21),
-                (MAX_WORD // 7, (MAX_WORD // 7) * 7), (MAX_WORD // 7 + 1, None)]),
-            ("multiply_zero_right", "natMul state 0", [(0, 0), (MAX_WORD, 0)]),
-            ("multiply_zero_left", "natMul 0 state", [(0, 0), (MAX_WORD, 0)]),
-            ("asymmetric_nested", "natSub 20 (natMul state 3)", [(2, 14), (9, 0)]),
-            ("intermediate_overflow", "natSub (natAdd state 1) 1",
-             [(0, 0), (MAX_WORD, None)]),
-            ("zero_does_not_erase_overflow", "natMul 0 (natAdd state 1)",
-             [(2, 0), (MAX_WORD, None)]),
-            ("unused_let_still_evaluates", "let discarded : Nat := natAdd state 1 in 0",
-             [(2, 0), (MAX_WORD, None)]),
-            ("max_add_boundary", f"natAdd state {MAX_WORD}", [(0, MAX_WORD), (1, None)]),
-            ("max_mul_boundary", f"natMul state {MAX_WORD}",
-             [(0, 0), (1, MAX_WORD), (2, None)]),
-        ]
         runtimes = set()
-        for name, expression, samples in cases:
+        for name, expression, samples in CASES:
             source = source_for(expression)
             artifact = self.compile(source)
             runtimes.add(artifact["runtimeBytecode"])
             address = self.deploy(node, owner, artifact)
             observations = []
-            for state, expected in samples:
+            for state, natural, expected in samples:
                 seed_state(node, address, state)
                 require(call_word(node, owner, address, get) == state, "test state seed failed")
-                self.eval(source, state, expected)
+                observation = evaluate(self.compiler, source, state, natural, expected)
                 transaction = {"from": owner, "to": address, "data": inc}
                 if expected is None:
                     reject_call(node, transaction)
                     receipt = node.send(transaction)
                     check_failure(receipt)
                     require(storage(node, address, 1) == state, f"{name}: overflow changed state")
+                    observation["evm"] = {"status": "reverted", "storage": str(state),
+                                          "logs": len(receipt["logs"])}
                 else:
                     actual = call_word(node, owner, address, inc)
                     require(actual == expected, f"{name} at {state}: {actual} != {expected}")
@@ -338,17 +321,14 @@ class Suite:
                     check_success(receipt)
                     require(storage(node, address, 1) == expected, f"{name}: persisted result wrong")
                     check_event(receipt, address, topic, expected)
-                observations.append({"state": str(state),
-                                     "expected": None if expected is None else str(expected)})
+                    observation["evm"] = {"status": "value", "value": str(actual),
+                                          "storage": str(expected), "logs": len(receipt["logs"])}
+                observations.append(observation)
             self.record(name, source=source.strip(),
                         source_sha256=hashlib.sha256(source.encode()).hexdigest(),
                         samples=observations)
         require(len(runtimes) >= 8, "source changes did not drive distinct emitted programs")
         self.record("source_drives_bytecode", distinct_runtimes=len(runtimes))
-
-
-def source_for(expression: str) -> str:
-    return f"def step : (state : Nat) -> Nat := fun (state : Nat) => {expression}\n"
 
 
 def storage(node, address, slot):
@@ -371,8 +351,8 @@ def reject_call(node, transaction):
     try:
         node.rpc("eth_call", [transaction, "latest"])
     except RpcError as error:
-        require("revert" in str(error).lower() or "out of gas" in str(error).lower(),
-                f"unexpected RPC failure instead of EVM failure: {error}")
+        require("revert" in str(error).lower() and "out of gas" not in str(error).lower(),
+                f"unexpected RPC failure instead of EVM revert: {error}")
         return
     raise AssertionError(f"invalid local call succeeded: {transaction}")
 
@@ -415,6 +395,8 @@ def main() -> int:
                                  text=True, timeout=10, check=True)
         report["anvil_version"] = version.stdout.strip()
         report["compiler_sha256"] = hashlib.sha256(args.compiler.read_bytes()).hexdigest()
+        report["corpus_sha256"] = hashlib.sha256(
+            (ROOT / "tests/source_differential.py").read_bytes()).hexdigest()
         suite = Suite(args.compiler.resolve(), report)
         suite.negative_compilation()
         with LocalNode(executable) as node:

@@ -66,3 +66,45 @@ These are conditional bridge and adapter checks. Full Kan construction
 admissibility, general compiler correctness, Telcoin execution conformance,
 and the performance gates remain open. The earlier EVM and timing results
 above remain the prototype's prior records.
+
+**Checked source differential validation, 2026-09-07.** The new
+`--eval-source ENTRY STATE` path checks the source and a core application,
+then evaluates it with the pinned kernel. It shares preflight and source
+checking with compilation, but bypasses erasure, IR lowering, and the IR
+evaluator. Existing compilation and `--eval` behavior remain covered by the
+CLI regressions. No vendored source or Lean proof changed.
+
+| Check | Result |
+| --- | --- |
+| `dune build bin/main.exe` | Passed without diagnostics. |
+| `dune runtest` | Passed, including all 37 foundation adapter checks. |
+| `python3 -P tests/compiler_cli.py` | All four regression groups passed. |
+| `python3 -P tests/source_differential.py` | 20 programs, 53 source/IR samples, 13 rejected input cases, and a nondefault entry check passed. |
+| `python3 -P tests/evm_integration.py` | All 37 reported groups passed, including the same 53 differential samples through local EVM execution. |
+| `panicscan --all --limit=20 lib bin` | Zero findings across five authored OCaml files. |
+| Independent static review and `git diff --check` | Completed; the identified EVM failure-reporting issue was fixed. |
+
+The [source/IR report](evidence/source-differential/source-ir.json) records
+the compiler binary, authored compiler source, upstream lock, and corpus
+hashes. The [EVM report](evidence/source-differential/evm.json) records the
+same compiler and corpus hashes, the local engine version, observed source
+and IR outcomes, EVM results, storage, and log counts. Forty samples return
+matching values. Thirteen samples compute a natural result but require
+checked intermediate overflow and EVM revert. This includes discarded lets
+and expressions whose natural final result fits uint256.
+
+The EVM suite requires a revert for rejected calls; out-of-gas errors no
+longer satisfy that check. Separate low-gas coverage still verifies rollback.
+All deployments used an owned temporary loopback Anvil process. Its
+Prague-mode results remain baseline EVM evidence, with the engine limitations
+described above. Pinned Telcoin production execution remains the next
+execution milestone: the local target commit and its six recorded source
+hashes were verified, but a matching execution runner is not installed.
+
+The oracle retains uint256 input bounds, frontend resource limits, and an
+external timeout in the harness. Its natural result is unrestricted by the EVM
+word limit. The corpus harness gives each evaluator call ten seconds. The EVM
+suite gives each compiler call twenty seconds. Kernel evaluation has no budget polling, and the
+oracle does not model the final wrapper bound or gas. This finite corpus
+tests the source-to-IR boundary; it does not prove general checker, erasure,
+or backend correctness, Kan-only foundations, or Telcoin conformance.

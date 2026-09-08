@@ -55,13 +55,22 @@ let evaluate entry state_text source =
   in
   Ok (Printf.sprintf "{\"value\":%s}" (json_string (Z.to_string value)))
 
+let evaluate_source entry state_text source =
+  let* state = integer state_text in
+  let* value =
+    T.Frontend.eval_source ~entry ~state source
+    |> Result.map_error T.Frontend.error_to_string
+  in
+  Ok (Printf.sprintf "{\"value\":%s}" (json_string (Z.to_string value)))
+
 let run args source =
   match args with
   | [ _; entry; bound ] -> compile entry bound source
   | [ _; "--eval"; entry; state ] -> evaluate entry state source
+  | [ _; "--eval-source"; entry; state ] -> evaluate_source entry state source
   | [] | [ _ ] | [ _; _ ] | [ _; _; _; _ ]
   | _ :: _ :: _ :: _ :: _ :: _ ->
-      Error "usage: main.exe ENTRY BOUND < source.kan | main.exe --eval ENTRY STATE < source.kan"
+      Error "usage: main.exe ENTRY BOUND < source.kan | main.exe --eval ENTRY STATE < source.kan | main.exe --eval-source ENTRY STATE < source.kan"
 
 let () =
   let source = In_channel.input_all stdin in

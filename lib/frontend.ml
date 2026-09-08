@@ -21,6 +21,7 @@ let max_source_bytes = 65536
 let max_nodes = 4096
 let max_depth = 128
 let word_limit = Z.shift_left Z.one 256
+let within_word value = Z.sign value >= 0 && Z.compare value word_limit < 0
 
 type lowered = {
   expression : Contract_ir.expr;
@@ -33,10 +34,13 @@ let bounded expression nodes depth =
   else if depth > max_depth then unsupported "the transition exceeds depth 128"
   else Ok { expression; nodes; depth }
 
+let validate_literal value =
+  if within_word value then Ok ()
+  else unsupported "a Nat literal is outside the uint256 range"
+
 let constant value =
-  if Z.sign value < 0 || Z.compare value word_limit >= 0 then
-    unsupported "a Nat literal is outside the uint256 range"
-  else bounded (Contract_ir.Const value) 1 1
+  let* () = validate_literal value in
+  bounded (Contract_ir.Const value) 1 1
 
 let nat_repr (representation : E.repr) : bool =
   match representation with
@@ -46,7 +50,7 @@ let nat_repr (representation : E.repr) : bool =
 let builtin_names = K.Prim.nat_name :: List.map K.Prim.name K.Prim.catalog
 
 (* Restrict tokens and syntax before elaboration can evaluate a closed let.
-   Inputs that pass this guard still pass through the actual kernel and eraser. *)
+   Inputs that pass this guard still pass through the actual kernel checker. *)
 let lexical_limits source =
   let* _state =
     String.fold_left
@@ -80,7 +84,7 @@ let token_limits tokens =
             | Tok.RParen -> Ok (Int.max 0 (parentheses - 1), recursive_syntax)
             | Tok.KLet | Tok.KFun | Tok.Arrow -> Ok (parentheses, recursive_syntax + 1)
             | Tok.Nat value ->
-                let* _value = constant value in
+                let* () = validate_literal value in
                 Ok (parentheses, recursive_syntax)
             | Tok.Colon | Tok.ColonEq | Tok.DArrow | Tok.KDef | Tok.KIn
             | Tok.KNatAdd | Tok.KNatSub | Tok.KNatMul | Tok.Ident _ | Tok.Eof ->
@@ -146,7 +150,7 @@ let rec preflight_expression depth remaining environment term =
         in
         Ok (size, remaining)
     | S.SNat value ->
-        let* _value = constant value in
+        let* () = validate_literal value in
         let* size = preflight_size 1 1 (Int.max 1 (Z.numbits value)) in
         Ok (size, remaining)
     | S.SApp (S.SApp (S.SPrim primitive, left), right) ->
@@ -354,7 +358,7 @@ let selected_function entry declarations =
   in
   Option.to_result ~none:(Unsupported "the entry has no runtime function") selected
 
-let compile ~entry source =
+let checked_source ~entry source =
   if String.length source > max_source_bytes then
     unsupported "the source exceeds 65536 bytes"
   else
@@ -370,16 +374,45 @@ let compile ~entry source =
         (List.assoc_opt entry rows)
     in
     let* () = check_signature budget globals entry in
-    let* erased = kernel (K.Erase.program ~budget globals rows) in
-    let* selected =
-      Option.to_result ~none:(Unsupported ("no erased entry named " ^ entry))
-        (List.assoc_opt entry erased)
-    in
-    match selected with
-    | K.Erase.Dropped -> unsupported "the selected definition is erased"
-    | K.Erase.Postulate _ -> unsupported "the selected definition is a postulate"
-    | K.Erase.Code declarations ->
-        let* body = selected_function entry declarations in
-        let state = { expression = Contract_ir.State; nodes = 1; depth = 1 } in
-        let* value, _remaining = lower 1 max_nodes [ state ] body in
-        Ok value.expression
+    Ok (budget, globals, rows)
+
+let eval_source ~entry ~state source =
+  let* () =
+    if within_word state then Ok () else unsupported "input state is outside uint256"
+  in
+  let* budget, globals, _rows = checked_source ~entry source in
+  let application =
+    K.Term.Out
+      (K.Shape.SPi (K.Quantity.Many, "state", K.Prim.nat_ty),
+       K.Term.APt (K.Quantity.Many, K.Term.Lit (K.Literal.LInt state)),
+       K.Term.Global entry)
+  in
+  let* expected = kernel (K.Eval.eval globals [] K.Prim.nat_ty) in
+  (* The kernel checks the synthetic application with the same 20000-poll budget
+     that checked the source. Compilation spends the remainder of that budget on
+     erasure instead. A source near the budget limit can be refused by one path
+     and accepted by the other. Both refusals are resource refusals, not a
+     semantic disagreement. *)
+  let* () =
+    kernel
+      (K.Check.check (K.Check.make globals budget) K.Quantity.Many application expected)
+  in
+  let* value = kernel (K.Eval.eval globals [] application) in
+  Option.to_result ~none:(Unsupported "source evaluation did not produce a Nat literal")
+    (Option.bind (K.Value.as_lit value) K.Prim.as_nat)
+
+let compile ~entry source =
+  let* budget, globals, rows = checked_source ~entry source in
+  let* erased = kernel (K.Erase.program ~budget globals rows) in
+  let* selected =
+    Option.to_result ~none:(Unsupported ("no erased entry named " ^ entry))
+      (List.assoc_opt entry erased)
+  in
+  match selected with
+  | K.Erase.Dropped -> unsupported "the selected definition is erased"
+  | K.Erase.Postulate _ -> unsupported "the selected definition is a postulate"
+  | K.Erase.Code declarations ->
+      let* body = selected_function entry declarations in
+      let state = { expression = Contract_ir.State; nodes = 1; depth = 1 } in
+      let* value, _remaining = lower 1 max_nodes [ state ] body in
+      Ok value.expression

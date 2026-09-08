@@ -4,7 +4,7 @@ This workspace contains an OCaml compiler prototype that checks Kanon source and
 
 The source input is a closed `Nat -> Nat` state transition. A fixed counter wrapper supplies persistent state, constructor ownership, ABI dispatch, and checked failure behavior. This is the first executable slice of the [language design](TELCOIN-LANGUAGE-DESIGN.md). Kan-only foundations, Lean 4 parity, full Telcoin execution conformance, and OCaml compilation-speed parity remain open.
 
-The current [validation record](VALIDATION.md) reports a clean build, 29 local EVM checks, four CLI regression groups, and the first compilation timing calibration.
+The current [validation record](VALIDATION.md) reports a clean build, 37 local EVM checks, 53 checked-source/IR comparisons, four CLI regression groups, and the first compilation timing calibration.
 
 The existing Kanon checkout was left untouched. The compiler uses 34 committed source and license files from `c4180626123687858ff83408bab801c6f87e3e71`, stored under `third_party/kanon`. [kanon-source.lock.json](kanon-source.lock.json) records SHA-256 hashes. The [Telcoin profile](telcoin-target.json) pins source configuration at `66e0d14a52b042a383b666d4b4da0079ec5b4871`; it does not assert a live network's software version.
 
@@ -53,11 +53,34 @@ Additional limits are 65,536 source bytes, 20,000 checker budget polls, and 1,02
 **Local execution validation.**
 
 ```sh
-python3 tests/compiler_cli.py
-python3 tests/evm_integration.py
+python3 -P tests/compiler_cli.py
+python3 -P tests/source_differential.py
+python3 -P tests/evm_integration.py
 ```
 
 The test harness owns a fresh Anvil process bound to loopback, deploys only to that ephemeral process, and shuts it down. It checks bytecode installation, ABI behavior, ownership, storage, logs, arithmetic edge cases, refusals, and rollback. Some boundary fixtures seed state with Anvil's test-only storage RPC. No wallet, public RPC, or live deployment is involved.
+
+The fixed differential corpus runs 20 programs at 53 input states through
+the checked source evaluator, the lowered IR evaluator, and EVM execution.
+It covers shared and shadowed lets, annotations, unused strict bindings,
+natural subtraction, and overflow. Source evaluation bypasses erasure and
+IR lowering, so it can expose disagreements in those compiler steps.
+
+```sh
+_build/default/bin/main.exe --eval-source step 3 < examples/counter.kan
+_build/default/bin/main.exe --eval step 3 < examples/counter.kan
+```
+
+Both commands check the source and require a uint256 input. `--eval-source`
+returns the pinned kernel's natural-number result, which can exceed uint256.
+`--eval` retains checked arithmetic at every IR intermediate. An overflowing
+intermediate must fail IR and EVM execution even if the natural final result
+fits uint256. The evaluators do not apply the contract wrapper's final state
+bound or model gas. The corpus harness gives each evaluator call ten seconds.
+The EVM suite gives each compiler call twenty seconds.
+Kernel evaluation itself has no budget polling. These are bounded regression
+checks, with [recorded evidence](evidence/source-differential/source-ir.json),
+rather than a proof of compiler preservation.
 
 The installed Anvil version predates finalized Prague. Passing these tests supplies baseline EVM evidence for the opcodes used. It does not validate Telcoin's current execution dependencies, custom precompiles, fee distribution, or gas over-reservation policy. The report records this limitation and the actual engine version.
 
