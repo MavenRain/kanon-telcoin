@@ -51,7 +51,9 @@ let evaluate entry state_text source =
   let* value =
     T.Contract_ir.eval state expr
     |> Result.map_error (function
-         | T.Contract_ir.Intermediate_overflow -> "intermediate word overflow")
+         | T.Contract_ir.Intermediate_overflow -> "intermediate word overflow"
+         | T.Contract_ir.Unbound_local index ->
+             Printf.sprintf "unbound IR local: %d" index)
   in
   Ok (Printf.sprintf "{\"value\":%s}" (json_string (Z.to_string value)))
 

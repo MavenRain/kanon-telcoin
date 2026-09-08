@@ -1,0 +1,1486 @@
+{
+  "anvil_command": [
+    "/Users/oobi/.foundry/bin/anvil",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "60235",
+    "--hardfork",
+    "prague",
+    "--chain-id",
+    "2017",
+    "--accounts",
+    "2",
+    "--threads",
+    "2",
+    "--quiet"
+  ],
+  "anvil_version": "anvil 0.3.0 (5a8bd89 2024-12-20T08:45:53.195623000Z)",
+  "caveat": "This is a local baseline EVM test using the recorded Anvil version and its Prague mode. It does not establish conformance to a pinned Telcoin Network client, genesis, execution dependencies, precompiles, or live network. The fixed differential corpus compares checked kernel evaluation before erasure, checked uint256 IR execution, and EVM results. Source evaluation uses natural arithmetic; intermediate overflow requires IR and EVM failure even when the natural result fits uint256. This is not a compiler proof.",
+  "chain_id": 2017,
+  "checks": [
+    {
+      "diagnostic": "kanonc: mismatch: the term has type Nat and the expected type is (Ran SPi w state Nat Nat)",
+      "name": "wrong_entry_type",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: preflight: surface form '()'",
+      "name": "ill_typed_body",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: no source definition named absent",
+      "name": "unknown_entry",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: preflight: user axiom",
+      "name": "user_axiom",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: preflight: surface form 'sum'",
+      "name": "unsupported_boolean",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: preflight: a type annotation other than bare Nat",
+      "name": "unsupported_closure",
+      "status": "passed"
+    },
+    {
+      "diagnostic": "kanonc: unsupported: preflight: a Nat literal is outside the uint256 range",
+      "name": "literal_exceeds_uint256",
+      "status": "passed"
+    },
+    {
+      "name": "nonpayable_constructor",
+      "status": "passed"
+    },
+    {
+      "address": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+      "name": "deployment_and_reproducibility",
+      "runtime_bytes": 162,
+      "status": "passed"
+    },
+    {
+      "name": "initial_state_and_public_get",
+      "status": "passed"
+    },
+    {
+      "event_topic": "0x20d8a6f5a693f9d1d627a598e8820f7a55ee74c183aa8f1a30e8d4e8dd9a8d84",
+      "name": "increment_result_state_event",
+      "status": "passed"
+    },
+    {
+      "name": "unauthorized_increment_rollback",
+      "status": "passed"
+    },
+    {
+      "name": "malformed_calldata_and_unknown_selector",
+      "status": "passed"
+    },
+    {
+      "name": "nonpayable_calls_rollback",
+      "status": "passed"
+    },
+    {
+      "failed_gas": 29420,
+      "name": "low_gas_rollback",
+      "status": "passed",
+      "successful_gas": 29421
+    },
+    {
+      "name": "bound_exhaustion_rollback",
+      "status": "passed"
+    },
+    {
+      "name": "identity",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => state",
+      "source_sha256": "81cc8b0caa753eb40b2660026ac42c6a29bed812acdf9e6dfbcea7cde9b17767",
+      "status": "passed"
+    },
+    {
+      "name": "constant",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "7",
+            "value": "7"
+          },
+          "ir": {
+            "status": "value",
+            "value": "7"
+          },
+          "source": {
+            "status": "value",
+            "value": "7"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "7",
+            "value": "7"
+          },
+          "ir": {
+            "status": "value",
+            "value": "7"
+          },
+          "source": {
+            "status": "value",
+            "value": "7"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => 7",
+      "source_sha256": "0acc2e74823cf7f2766998a93a5bd99e61a1bead9aa249148c3f533aee36adc1",
+      "status": "passed"
+    },
+    {
+      "name": "add_two",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "2",
+            "value": "2"
+          },
+          "ir": {
+            "status": "value",
+            "value": "2"
+          },
+          "source": {
+            "status": "value",
+            "value": "2"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "7",
+            "value": "7"
+          },
+          "ir": {
+            "status": "value",
+            "value": "7"
+          },
+          "source": {
+            "status": "value",
+            "value": "7"
+          },
+          "state": "5"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639933"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639934"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639936"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639934"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natAdd state 2",
+      "source_sha256": "c1bff7e3b2b2b5747bd7bcc4c5659a31e9e6393055e4dc51b1ed57e870a06cd9",
+      "status": "passed"
+    },
+    {
+      "name": "saturating_sub",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "2"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "2",
+            "value": "2"
+          },
+          "ir": {
+            "status": "value",
+            "value": "2"
+          },
+          "source": {
+            "status": "value",
+            "value": "2"
+          },
+          "state": "5"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639932",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639932"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639932"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639932"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natSub state 3",
+      "source_sha256": "c4bc0a94a4bc893115d61f26663c32dc485ace027f817b389e5ba86c84337a68",
+      "status": "passed"
+    },
+    {
+      "name": "asymmetric_sub",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "10",
+            "value": "10"
+          },
+          "ir": {
+            "status": "value",
+            "value": "10"
+          },
+          "source": {
+            "status": "value",
+            "value": "10"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "7",
+            "value": "7"
+          },
+          "ir": {
+            "status": "value",
+            "value": "7"
+          },
+          "source": {
+            "status": "value",
+            "value": "7"
+          },
+          "state": "3"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "12"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natSub 10 state",
+      "source_sha256": "222e90a296b06733ad3d2324e1c2c4bf3ab58c4a03e0ad554b08b4da29199409",
+      "status": "passed"
+    },
+    {
+      "name": "multiply",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "21",
+            "value": "21"
+          },
+          "ir": {
+            "status": "value",
+            "value": "21"
+          },
+          "source": {
+            "status": "value",
+            "value": "21"
+          },
+          "state": "3"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639934",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639934"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639934"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639934"
+          },
+          "state": "16541727033902313631938712144098272550467140666520080577065369143987589948562"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "16541727033902313631938712144098272550467140666520080577065369143987589948563"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639941"
+          },
+          "state": "16541727033902313631938712144098272550467140666520080577065369143987589948563"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul state 7",
+      "source_sha256": "32f2364340fe6aece27e708bb73188245fcdf83c0f497ed99761f8ba3557d252",
+      "status": "passed"
+    },
+    {
+      "name": "multiply_zero_right",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul state 0",
+      "source_sha256": "e19a43fad71ef842c77167b931098a58813dba85d909bed16ee0a24202312ea1",
+      "status": "passed"
+    },
+    {
+      "name": "multiply_zero_left",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul 0 state",
+      "source_sha256": "1d8b4cd35d323aa5f6d248963051d6f8061971e2544106ca99fc6a38f6741d15",
+      "status": "passed"
+    },
+    {
+      "name": "asymmetric_nested",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "14",
+            "value": "14"
+          },
+          "ir": {
+            "status": "value",
+            "value": "14"
+          },
+          "source": {
+            "status": "value",
+            "value": "14"
+          },
+          "state": "2"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "9"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natSub 20 (natMul state 3)",
+      "source_sha256": "0022279f7ee21651cf0a88660e6e33582208a5b3f4ad19b50462d2fe472ec005",
+      "status": "passed"
+    },
+    {
+      "name": "intermediate_overflow",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natSub (natAdd state 1) 1",
+      "source_sha256": "3e7edd0d4b992009e6fe3a6fe79019cd3e1c5b7e8e878f17d9ab811f6b6d7bac",
+      "status": "passed"
+    },
+    {
+      "name": "zero_does_not_erase_overflow",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "2"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul 0 (natAdd state 1)",
+      "source_sha256": "ffab5e9545b6627ec9fed581d2dad33a13dc6645cb983265f510053ad9d11f31",
+      "status": "passed"
+    },
+    {
+      "name": "unused_let_still_evaluates",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "2"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let discarded : Nat := natAdd state 1 in 0",
+      "source_sha256": "18d6da108da542fa323c4db4999b9460f3a94a44ac55abf6d0040630c04d3de7",
+      "status": "passed"
+    },
+    {
+      "name": "max_add_boundary",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "1"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639936"
+          },
+          "state": "1"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natAdd state 115792089237316195423570985008687907853269984665640564039457584007913129639935",
+      "source_sha256": "310bd35891a5f18627b2808f1fdef6c4723a42a3e1a4e07d828190a84c6a098c",
+      "status": "passed"
+    },
+    {
+      "name": "max_mul_boundary",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "1"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "2"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "231584178474632390847141970017375815706539969331281128078915168015826259279870"
+          },
+          "state": "2"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul state 115792089237316195423570985008687907853269984665640564039457584007913129639935",
+      "source_sha256": "1fbbce390ddfe81a4447db57c6c5d584273750a9af15edfe4168d84c655d7767",
+      "status": "passed"
+    },
+    {
+      "name": "shared_let",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "1",
+            "value": "1"
+          },
+          "ir": {
+            "status": "value",
+            "value": "1"
+          },
+          "source": {
+            "status": "value",
+            "value": "1"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "16",
+            "value": "16"
+          },
+          "ir": {
+            "status": "value",
+            "value": "16"
+          },
+          "source": {
+            "status": "value",
+            "value": "16"
+          },
+          "state": "3"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 1 in natMul x x",
+      "source_sha256": "62ecd8fca8faff85e9d9c971d47f8feb98228b405f267228fad189373bf0f630",
+      "status": "passed"
+    },
+    {
+      "name": "shadow_state",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "1",
+            "value": "1"
+          },
+          "ir": {
+            "status": "value",
+            "value": "1"
+          },
+          "source": {
+            "status": "value",
+            "value": "1"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "6",
+            "value": "6"
+          },
+          "ir": {
+            "status": "value",
+            "value": "6"
+          },
+          "source": {
+            "status": "value",
+            "value": "6"
+          },
+          "state": "5"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639936"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let state : Nat := natAdd state 2 in natSub state 1",
+      "source_sha256": "f6c2ecec56073d175426172b6c4b80f396515c1e24b9cd415b05b836793c0454",
+      "status": "passed"
+    },
+    {
+      "name": "nested_shadow",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "5",
+            "value": "5"
+          },
+          "ir": {
+            "status": "value",
+            "value": "5"
+          },
+          "source": {
+            "status": "value",
+            "value": "5"
+          },
+          "state": "10"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639930"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 3 in let y : Nat := (let x : Nat := 2 in natMul x 4) in natSub x y",
+      "source_sha256": "a793b42c9e9146cfb26866390538a04723a03fa502a33a7f10cb0781b03ee07c",
+      "status": "passed"
+    },
+    {
+      "name": "repeated_binding",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "2",
+            "value": "2"
+          },
+          "ir": {
+            "status": "value",
+            "value": "2"
+          },
+          "source": {
+            "status": "value",
+            "value": "2"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "7",
+            "value": "7"
+          },
+          "ir": {
+            "status": "value",
+            "value": "7"
+          },
+          "source": {
+            "status": "value",
+            "value": "7"
+          },
+          "state": "5"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639937"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 1 in let x : Nat := natMul x 2 in natSub x state",
+      "source_sha256": "f279038114b59bd0a8ab0b99afc46d7af8259a470eb971d0d55b320bd055b912",
+      "status": "passed"
+    },
+    {
+      "name": "closed_unused_overflow",
+      "samples": [
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "0"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let ignored : Nat := natAdd 115792089237316195423570985008687907853269984665640564039457584007913129639935 1 in state",
+      "source_sha256": "aeddffe87b8d832b58449f4cbc9953222fdaf488f03013d8334e0e46a2001332",
+      "status": "passed"
+    },
+    {
+      "name": "annotated_arithmetic",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "5",
+            "value": "5"
+          },
+          "ir": {
+            "status": "value",
+            "value": "5"
+          },
+          "source": {
+            "status": "value",
+            "value": "5"
+          },
+          "state": "9"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639931",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639931"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639931"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639931"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => ((natSub state 4 : Nat) : Nat)",
+      "source_sha256": "962bd16578e20a559cda46b75aa5a5f2d7426b5556a1ec7d0fd71c152dce73e6",
+      "status": "passed"
+    },
+    {
+      "name": "deep_shared_doubling",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "128",
+            "value": "128"
+          },
+          "ir": {
+            "status": "value",
+            "value": "128"
+          },
+          "source": {
+            "status": "value",
+            "value": "128"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639808",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639808"
+          },
+          "ir": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639808"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639808"
+          },
+          "state": "904625697166532776746648320380374280103671755200316906558262375061821325310"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "904625697166532776746648320380374280103671755200316906558262375061821325311"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639936"
+          },
+          "state": "904625697166532776746648320380374280103671755200316906558262375061821325311"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x0 : Nat := natAdd state 1 in let x1 : Nat := natAdd x0 x0 in let x2 : Nat := natAdd x1 x1 in let x3 : Nat := natAdd x2 x2 in let x4 : Nat := natAdd x3 x3 in let x5 : Nat := natAdd x4 x4 in let x6 : Nat := natAdd x5 x5 in let x7 : Nat := natAdd x6 x6 in x7",
+      "source_sha256": "51703110cf67c3509fbb1c8c0693b6753c84caf239b82b68045b09dceb691239",
+      "status": "passed"
+    },
+    {
+      "name": "local_scope_after_inner",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "6",
+            "value": "6"
+          },
+          "ir": {
+            "status": "value",
+            "value": "6"
+          },
+          "source": {
+            "status": "value",
+            "value": "6"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "21",
+            "value": "21"
+          },
+          "ir": {
+            "status": "value",
+            "value": "21"
+          },
+          "source": {
+            "status": "value",
+            "value": "21"
+          },
+          "state": "5"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "347376267711948586270712955026063723559809953996921692118372752023739388919811"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 2 in natSub (let y : Nat := natMul x 3 in natAdd y x) x",
+      "source_sha256": "0327aa6366dab91fd580ed30908a828c55ab9168a780a2bde5aa47a9d68a13b6",
+      "status": "passed"
+    },
+    {
+      "name": "shadowed_rhs_uses_outer",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "6",
+            "value": "6"
+          },
+          "ir": {
+            "status": "value",
+            "value": "6"
+          },
+          "source": {
+            "status": "value",
+            "value": "6"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "9",
+            "value": "9"
+          },
+          "ir": {
+            "status": "value",
+            "value": "9"
+          },
+          "source": {
+            "status": "value",
+            "value": "9"
+          },
+          "state": "3"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "115792089237316195423570985008687907853269984665640564039457584007913129639941"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 4 in let y : Nat := (let x : Nat := natAdd x 1 in natMul x 2) in natSub y x",
+      "source_sha256": "b317e80d755f4cdc94d014311854fe7d849e43f71efd8cfa73225b854e43887c",
+      "status": "passed"
+    },
+    {
+      "name": "unused_local_dependency_overflow",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "0",
+            "value": "0"
+          },
+          "ir": {
+            "status": "value",
+            "value": "0"
+          },
+          "source": {
+            "status": "value",
+            "value": "0"
+          },
+          "state": "0"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "57896044618658097711785492504343953926634992332820282019728792003956564819967"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "57896044618658097711785492504343953926634992332820282019728792003956564819967"
+          },
+          "state": "57896044618658097711785492504343953926634992332820282019728792003956564819967"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := natAdd state 1 in let ignored : Nat := natMul x 2 in state",
+      "source_sha256": "77af65cd3b4487b46e342c660ff9234476abcb4b0b439cf8116779dc36e6a416",
+      "status": "passed"
+    },
+    {
+      "name": "strict_unused_binding_inside_rhs",
+      "samples": [
+        {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "14",
+            "value": "14"
+          },
+          "ir": {
+            "status": "value",
+            "value": "14"
+          },
+          "source": {
+            "status": "value",
+            "value": "14"
+          },
+          "state": "2"
+        },
+        {
+          "evm": {
+            "logs": 0,
+            "status": "reverted",
+            "storage": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+          },
+          "ir": {
+            "status": "intermediate_overflow"
+          },
+          "source": {
+            "status": "value",
+            "value": "14"
+          },
+          "state": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        }
+      ],
+      "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => let x : Nat := (let ignored : Nat := natAdd state 1 in 7) in natAdd x x",
+      "source_sha256": "aaf954241edc8ce251a366479fa96e75dd46da99b5ec4e8eb9a60bacb1a7bc1b",
+      "status": "passed"
+    },
+    {
+      "distinct_runtimes": 25,
+      "name": "source_drives_bytecode",
+      "status": "passed"
+    },
+    {
+      "name": "shared_let_emitted_once",
+      "repeated": {
+        "arithmetic_opcodes": {
+          "ADD": 2,
+          "MUL": 1
+        },
+        "expression_forms": {
+          "Add": 2,
+          "Const": 2,
+          "Mul": 1,
+          "State": 2
+        },
+        "gas_used": 29718,
+        "runtime_bytes": 277,
+        "runtime_sha256": "02e0f75cde465ccdfe3d30d35b139cad6d04da5b4f964cc249748dca8458cdfe",
+        "sample": {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "16",
+            "value": "16"
+          },
+          "ir": {
+            "status": "value",
+            "value": "16"
+          },
+          "source": {
+            "status": "value",
+            "value": "16"
+          },
+          "state": "3"
+        },
+        "source": "def step : (state : Nat) -> Nat := fun (state : Nat) => natMul (natAdd state 1) (natAdd state 1)\n",
+        "source_sha256": "57f7a3d23d65eb2705f8c3e27502e23aef4b2a0e9c4859c7b085d07c708ab693"
+      },
+      "shared": {
+        "arithmetic_opcodes": {
+          "ADD": 1,
+          "MUL": 1
+        },
+        "expression_forms": {
+          "Add": 1,
+          "Const": 1,
+          "Let": 1,
+          "Local": 2,
+          "Mul": 1,
+          "State": 1
+        },
+        "gas_used": 29557,
+        "runtime_bytes": 246,
+        "runtime_sha256": "79c020f2dd0a459e2b09e55999edebf6184a759609eb833af04d255540e48172",
+        "sample": {
+          "evm": {
+            "logs": 1,
+            "status": "value",
+            "storage": "16",
+            "value": "16"
+          },
+          "ir": {
+            "status": "value",
+            "value": "16"
+          },
+          "source": {
+            "status": "value",
+            "value": "16"
+          },
+          "state": "3"
+        },
+        "source": "def step : (state : Nat) -> Nat :=\n  fun (state : Nat) =>\n    let x : Nat := natAdd state 1 in natMul x x\n",
+        "source_sha256": "1bdecc91e9896ca72ed7ce26c8a916b2e4fefca8c7fd8d8fed2b1ffefc200dec"
+      },
+      "status": "passed"
+    }
+  ],
+  "client_version": "anvil/v0.3.0",
+  "compiler_sha256": "3d3301f7d5e31c1295044746195c617e44de0d49d7540020f79e74976b83ed75",
+  "compiler_source_sha256": {
+    "bin/dune": "06f6b140b4bb6e8d92b59de97e1bd7a3e85fd187dd98c1369d9b20e743cc20c0",
+    "bin/main.ml": "4cea7fa95d6e6cf1187604712efd8cf667656f170f0ecc014fa91033a7af3a16",
+    "dune": "6667ad12654ce90248a6069046368e6e8248aca243a72ddf3fd1fce750a9be86",
+    "dune-project": "60e27fdbe7a0843df3b4ecfaaefe1d394b5e09f315aeca6384dd65d30dd52c09",
+    "lib/contract_ir.ml": "0246f41b37d7de499b5f30d8560625cabf386f4aae030a7b14eebc6957e5756d",
+    "lib/dune": "05a075480430d025c27cae2bfb427edcde4c195c6b38496a9ebf52b22d7bdb30",
+    "lib/evm.ml": "8d81112f1b1096f1914674ccd81d73263950a73cdc8365eb2a8eb1e4a8438c2a",
+    "lib/frontend.ml": "3023add21bd8f1d1e9ec05014acda59cec20ebeeb01b4a643bd130da41c5e2a2",
+    "lib/nat_fragment.ml": "8d22837609b2d4ffc00d47c64f9791e275a7085d4c97bc4afa5f8c9a090c6f3f"
+  },
+  "corpus_sha256": "63919c93ded96136de263073954e44f3bb005c28a7709cbc17835df245f8e6b0",
+  "elapsed_seconds": 1.436,
+  "hardfork": "prague",
+  "harness_sha256": "e68a13ecafed1323558426a3b9f9c2e6a7c2faf4eaa7a683c7fd31602703e0c8",
+  "kanon_source_lock_sha256": "480e8fe14f513b9105b08e0bd504aa7fd936a7e4a24f0889fd1cef218757a978",
+  "network_scope": "fresh owned Anvil subprocess, 127.0.0.1 only",
+  "passed_checks": 43,
+  "state_seeding": "anvil_setStorageAt is used only for local edge-case fixtures",
+  "status": "passed"
+}

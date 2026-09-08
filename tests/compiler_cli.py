@@ -86,7 +86,9 @@ def main():
         body += f"let x{i} : Nat := natMul x{i-1} x{i-1} in "
     source = f"def step : (state : Nat) -> Nat := fun (state : Nat) => {body} x30\n"
     result = invoke(source, "step", "100")
-    require(result.returncode == 2 and b"preflight" in result.stderr.lower(),
+    require(result.returncode == 2 and not result.stdout
+            and b"preflight: expanded arithmetic exceeds 4096 nodes"
+            in result.stderr.lower(),
             "expanding constant expression was not rejected by syntax preflight")
     print("PASS expensive constant expression rejected before kernel checking")
 

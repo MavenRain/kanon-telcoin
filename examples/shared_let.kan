@@ -1,0 +1,3 @@
+def step : (state : Nat) -> Nat :=
+  fun (state : Nat) =>
+    let x : Nat := natAdd state 1 in natMul x x

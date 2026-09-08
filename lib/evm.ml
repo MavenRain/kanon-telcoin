@@ -123,31 +123,42 @@ let assemble instructions =
 let validate_expression expression =
   let rec visit count = function
     | [] -> Ok ()
-    | (expression, depth) :: rest ->
+    | (expression, depth, locals) :: rest ->
         if count >= 1_024 then Error "EVM expression exceeds 1024 nodes"
         else if depth > 256 then Error "EVM expression exceeds nesting depth 256"
         else
           match expression with
           | Contract_ir.State -> visit (count + 1) rest
+          | Contract_ir.Local index -> (
+              match () with
+              | () when index < 0 -> Error "EVM local index is negative"
+              | () when index >= locals -> Error "EVM local index is unbound"
+              | () -> visit (count + 1) rest)
           | Contract_ir.Const value ->
               if Z.sign value < 0 || Z.gt value Contract_ir.max_word then
                 Error "EVM constant lies outside uint256"
               else visit (count + 1) rest
+          | Contract_ir.Let (value, body) ->
+              visit (count + 1)
+                ((value, depth + 1, locals) :: (body, depth + 1, locals + 1) :: rest)
           | Contract_ir.Add (left, right)
           | Contract_ir.Sub (left, right)
           | Contract_ir.Mul (left, right) ->
-              visit (count + 1) ((left, depth + 1) :: (right, depth + 1) :: rest)
+              visit (count + 1)
+                ((left, depth + 1, locals) :: (right, depth + 1, locals) :: rest)
   in
-  visit 0 [ (expression, 0) ]
+  visit 0 [ (expression, 0, 0) ]
 
 let form = function
   | Contract_ir.State -> "State"
   | Contract_ir.Const _ -> "Const"
+  | Contract_ir.Local _ -> "Local"
+  | Contract_ir.Let _ -> "Let"
   | Contract_ir.Add _ -> "Add"
   | Contract_ir.Sub _ -> "Sub"
   | Contract_ir.Mul _ -> "Mul"
 
-let rec expression_code state expression =
+let rec scoped_expression_code environment state expression =
   let node = state.next_node in
   let first = Printf.sprintf "expression_%d_start" node in
   let last = Printf.sprintf "expression_%d_end" node in
@@ -163,6 +174,20 @@ let rec expression_code state expression =
     match expression with
     | Contract_ir.State -> emit state [ word 1; Op 0x54 ]
     | Contract_ir.Const value -> emit state [ Push value ]
+    | Contract_ir.Local index ->
+        let* slot =
+          if index < 0 then Error "EVM local index is negative"
+          else
+            Option.to_result ~none:"EVM local index is unbound"
+              (List.nth_opt environment index)
+        in
+        emit state (load slot)
+    | Contract_ir.Let (value, body) ->
+        let slot = state.next_temp * 32 in
+        let state = { state with next_temp = state.next_temp + 1 } in
+        let* state = scoped_expression_code environment state value in
+        let* state = emit state (save slot) in
+        scoped_expression_code (slot :: environment) state body
     | Contract_ir.Add (left, right)
     | Contract_ir.Sub (left, right)
     | Contract_ir.Mul (left, right) ->
@@ -170,9 +195,9 @@ let rec expression_code state expression =
         let right_slot = left_slot + 32 in
         let result_slot = left_slot + 64 in
         let state = { state with next_temp = state.next_temp + 3 } in
-        let* state = expression_code state left in
+        let* state = scoped_expression_code environment state left in
         let* state = emit state (save left_slot) in
-        let* state = expression_code state right in
+        let* state = scoped_expression_code environment state right in
         let* state = emit state (save right_slot) in
         let ready = Printf.sprintf "expression_%d_ready" node in
         let zero = Printf.sprintf "expression_%d_zero" node in
@@ -193,10 +218,12 @@ let rec expression_code state expression =
               (load right_slot @ load left_slot @ [ Op 0x10 ] @ jump_if zero
              @ load right_slot @ load left_slot @ [ Op 0x03 ] @ jump ready
              @ destination zero @ [ word 0 ] @ destination ready)
-        | Contract_ir.State | Contract_ir.Const _ ->
+        | Contract_ir.State | Contract_ir.Const _ | Contract_ir.Local _ | Contract_ir.Let _ ->
             Error "EVM binary expression classification failed")
   in
   emit state [ Mark last ]
+
+let expression_code state expression = scoped_expression_code [] state expression
 
 let source_map runtime_labels creation_labels nodes =
   let position labels name =

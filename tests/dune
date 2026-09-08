@@ -1,7 +1,13 @@
 (test
  (name nat_fragment)
+ (modules nat_fragment)
  (libraries kanon_telcoin kanon_kernel kanon_surface)
  (deps ../foundation/fixtures/nat-fragment.kanon)
  (action
   (with-stdin-from ../foundation/fixtures/nat-fragment.kanon
    (run %{test}))))
+
+(test
+ (name contract_ir)
+ (modules contract_ir)
+ (libraries kanon_telcoin zarith))

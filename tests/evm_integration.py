@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -200,6 +201,10 @@ class Suite:
             require(source_result.returncode == 2 and not source_result.stdout
                     and source_result.stderr,
                     f"{name}: source oracle did not reject the unsupported input")
+            if diagnostic is not None:
+                require(diagnostic in source_result.stderr.lower(),
+                        f"{name}: source oracle refused for another reason: "
+                        f"{source_result.stderr}")
             self.record(name, diagnostic=result.stderr.strip())
 
     def deploy(self, node: LocalNode, owner: str, artifact: dict):
@@ -293,6 +298,7 @@ class Suite:
         require(storage(node, address, 1) == 3, "bound exhaustion changed state")
         self.record("bound_exhaustion_rollback")
         self.arithmetic(node, owner, get, inc, topic)
+        self.shared_let(node, owner, inc, topic)
 
     def arithmetic(self, node, owner, get, inc, topic):
         runtimes = set()
@@ -329,6 +335,65 @@ class Suite:
                         samples=observations)
         require(len(runtimes) >= 8, "source changes did not drive distinct emitted programs")
         self.record("source_drives_bytecode", distinct_runtimes=len(runtimes))
+
+    def shared_let(self, node, owner, inc, topic):
+        # The shared program is the committed example, so the recorded bytecode
+        # and gas numbers measure the file the documents link.
+        programs = [
+            ("shared", (ROOT / "examples/shared_let.kan").read_text(),
+             {"Let": 1, "Add": 1, "State": 1, "Const": 1, "Mul": 1, "Local": 2}),
+            ("repeated", source_for("natMul (natAdd state 1) (natAdd state 1)"),
+             {"Mul": 1, "Add": 2, "State": 2, "Const": 2}),
+        ]
+        evidence = {}
+        for name, source, expected_forms in programs:
+            artifact = self.compile(source)
+            runtime = bytes.fromhex(artifact["runtimeBytecode"][2:])
+            spans = [span for span in artifact["sourceMap"]["runtime"]
+                     if span["kind"] == "expression"]
+            forms = Counter(span["form"] for span in spans)
+            require(forms == expected_forms,
+                    f"{name}: let lowering duplicated or erased expression nodes: {forms}")
+            opcodes = Counter()
+            boundaries = {0}
+            pc = 0
+            while pc < len(runtime):
+                opcode = runtime[pc]
+                opcodes[opcode] += 1
+                pc += 1 + (opcode - 0x5f if 0x60 <= opcode <= 0x7f else 0)
+                boundaries.add(pc)
+            require(pc == len(runtime), f"{name}: runtime ends inside a PUSH operand")
+            require(all(span["start"] in boundaries and span["end"] in boundaries
+                        and span["start"] < span["end"] for span in spans),
+                    f"{name}: source-map nodes do not cover valid instruction spans")
+            require(opcodes[0x01] == expected_forms["Add"]
+                    and opcodes[0x02] == expected_forms["Mul"] and opcodes[0x03] == 0,
+                    f"{name}: emitted arithmetic disagrees with source-map node counts")
+            address = self.deploy(node, owner, artifact)
+            seed_state(node, address, 3)
+            observation = evaluate(self.compiler, source, 3, 16, 16)
+            require(call_word(node, owner, address, inc) == 16,
+                    f"{name}: equivalent arithmetic preview differs")
+            receipt = node.send({"from": owner, "to": address, "data": inc})
+            check_success(receipt)
+            check_event(receipt, address, topic, 16)
+            require(storage(node, address, 1) == 16,
+                    f"{name}: equivalent arithmetic persisted another result")
+            observation["evm"] = {"status": "value", "value": "16", "storage": "16",
+                                  "logs": len(receipt["logs"])}
+            evidence[name] = {
+                "source": source,
+                "source_sha256": hashlib.sha256(source.encode()).hexdigest(),
+                "runtime_sha256": hashlib.sha256(runtime).hexdigest(),
+                "runtime_bytes": len(runtime),
+                "expression_forms": dict(forms),
+                "arithmetic_opcodes": {"ADD": opcodes[0x01], "MUL": opcodes[0x02]},
+                "gas_used": int(receipt["gasUsed"], 16),
+                "sample": observation,
+            }
+        require(evidence["shared"]["runtime_bytes"] < evidence["repeated"]["runtime_bytes"],
+                "sharing did not reduce runtime bytecode for repeated arithmetic")
+        self.record("shared_let_emitted_once", **evidence)
 
 
 def storage(node, address, slot):
@@ -397,6 +462,14 @@ def main() -> int:
         report["compiler_sha256"] = hashlib.sha256(args.compiler.read_bytes()).hexdigest()
         report["corpus_sha256"] = hashlib.sha256(
             (ROOT / "tests/source_differential.py").read_bytes()).hexdigest()
+        report["harness_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        CORPUS["check_authored_sources"]()
+        report["compiler_source_sha256"] = {
+            name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+            for name in CORPUS["COMPILER_SOURCES"]
+        }
+        report["kanon_source_lock_sha256"] = hashlib.sha256(
+            (ROOT / "kanon-source.lock.json").read_bytes()).hexdigest()
         suite = Suite(args.compiler.resolve(), report)
         suite.negative_compilation()
         with LocalNode(executable) as node:

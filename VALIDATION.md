@@ -108,3 +108,68 @@ suite gives each compiler call twenty seconds. Kernel evaluation has no budget p
 oracle does not model the final wrapper bound or gas. This finite corpus
 tests the source-to-IR boundary; it does not prove general checker, erasure,
 or backend correctness, Kan-only foundations, or Telcoin conformance.
+
+**Shared strict lets, 2026-09-07.** The contract IR now preserves `Let` and
+scoped `Local` nodes. Lowering no longer substitutes a binding into every use
+or adds artificial multiplication and addition to sequence its evaluation.
+Both the IR evaluator and EVM execute each binding's right-hand side once,
+including unused bindings that must fail on intermediate overflow. EVM
+bindings use fresh memory slots, disjoint from arithmetic scratch and wrapper
+output. Invalid local indices return explicit errors.
+
+| Check | Result |
+| --- | --- |
+| `dunecho build` | Passed, zero errors and warnings. |
+| `dune runtest --force` | All 36 IR/lowering/emitter checks and 37 existing foundation checks passed. |
+| `python3 -P scripts/vendor_kanon.py` | All 34 pinned source files verified. |
+| `python3 -P tests/compiler_cli.py` | All four regression groups passed. |
+| `python3 -P tests/source_differential.py` | 25 programs, 66 source/IR samples, 13 refusals, and the nondefault entry check passed. |
+| `python3 -P tests/evm_integration.py` | All 43 groups passed, including the same 66 corpus samples and two sharing-comparison samples. |
+| `panicscan --all --limit=20 lib bin` | Zero findings across five authored OCaml files. |
+| Independent compiler and test review | Seven defects were found and fixed. They are listed below this table. |
+| `git diff --check` | Passed. |
+
+The review fixed these defects:
+
+- The emitter's local-index guard used an if/else-if chain instead of a `match ()` guard chain.
+- The IR test recorded an emitter pass for any successful compilation, without reading the artifact.
+- No check exercised the 1,024-node or the depth-256 emitter limit.
+- A corpus comment claimed the expanded doubling chain exceeds the 1,024-node emitter limit. It is 511 nodes.
+- The authored-source lint never ran in the EVM harness, so a new `lib/*.ml` file could go unhashed.
+- The EVM sharing case compiled an inline copy of the shared example, not the committed file.
+- This record said eight levels of shared doubling. The corpus builds seven doubling levels.
+
+The [source/IR report](evidence/let-sharing/source-ir.json) and
+[EVM report](evidence/let-sharing/evm.json) record the tested compiler binary,
+all nine compiler source/build-file hashes, the source lock, and corpus hash.
+The EVM report also hashes its harness. Earlier checkpoint reports remain in
+`evidence/source-differential`. The final run used Python 3.14.7 after the
+validation shell initially selected an older system interpreter that lacked
+`-P`; that attempt stopped after the successful OCaml checks.
+
+The new corpus cases exercise seven doubling levels over one shared base
+binding, nested RHS shadowing, restoration of an outer local after a sibling
+expression, and unused strict overflow inside and outside a RHS. Direct IR
+tests also reject negative indices, escaping locals, and a binding used in its
+own RHS. The source preflight's expanded-arithmetic, nesting, and bit limits
+remain unchanged, as do the checker and emitter limits. Direct IR tests now
+pin both emitter limits. A nest of 257 lets fails the depth limit, a nest of
+256 lets is emitted, a 1,025-node expression fails the node limit, and a
+1,023-node expression is emitted.
+
+At input state 3, the shared [example](examples/shared_let.kan) and an
+explicitly repeated `(state + 1)` expression both return and store 16 with
+one event. The shared variant emits one `ADD` and one `MUL`; the repeated
+variant emits two `ADD` operations and one `MUL`.
+
+| Local execution measurement | Shared binding | Explicit repetition |
+| --- | ---: | ---: |
+| Runtime bytes | 246 | 277 |
+| Transaction gas used | 29,557 | 29,718 |
+
+These measurements use identical seeded storage and calls under the owned
+temporary Anvil process. They demonstrate this expression's reduced bytecode
+and gas use, without establishing a general performance bound. No compilation
+latency measurement was rerun. The existing limits on Kan-only foundations,
+Lean parity, compiler proofs, and pinned Telcoin execution conformance still
+apply.

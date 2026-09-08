@@ -280,6 +280,24 @@ let binary name left right =
   bounded expression (1 + left.nodes + right.nodes)
     (1 + Int.max left.depth right.depth)
 
+type runtime_binding = Input_state | Let_local
+
+let lower_variable environment index =
+  let rec lookup environment remaining local_index =
+    match environment with
+    | [] -> unsupported "an unbound erased variable"
+    | binding :: rest ->
+        let expression, next_local =
+          match binding with
+          | Input_state -> Contract_ir.State, local_index
+          | Let_local -> Contract_ir.Local local_index, local_index + 1
+        in
+        if remaining = 0 then bounded expression 1 1
+        else lookup rest (remaining - 1) next_local
+  in
+  if index < 0 then unsupported "a negative erased variable index"
+  else lookup environment index 0
+
 let rec lower depth remaining environment term =
   if depth > max_depth then unsupported "the erased transition exceeds depth 128"
   else if remaining <= 0 then unsupported "the erased transition exceeds 4096 nodes"
@@ -287,25 +305,19 @@ let rec lower depth remaining environment term =
     let remaining = remaining - 1 in
     match term with
     | E.KVar index ->
-        if index < 0 then unsupported "a negative erased variable index"
-        else
-          let* value =
-            Option.to_result ~none:(Unsupported "an unbound erased variable")
-              (List.nth_opt environment index)
-          in
-          Ok (value, remaining)
+        let* value = lower_variable environment index in
+        Ok (value, remaining)
     | E.KLit (K.Literal.LInt value) ->
         let* value = constant value in
         Ok (value, remaining)
     | E.KLit (K.Literal.LString _) -> unsupported "a string literal"
     | E.KLet (_name, value, body) ->
         let* value, remaining = lower (depth + 1) remaining environment value in
-        let* body, remaining = lower (depth + 1) remaining (value :: environment) body in
-        (* Keep strict evaluation of an unused binding under checked arithmetic.
-           Multiplying its value by zero sequences it without changing the result. *)
-        let* zero = constant Z.zero in
-        let* evaluated = binary "natMul" zero value in
-        let* result = binary "natAdd" evaluated body in
+        let* body, remaining = lower (depth + 1) remaining (Let_local :: environment) body in
+        let* result =
+          bounded (Contract_ir.Let (value.expression, body.expression))
+            (1 + value.nodes + body.nodes) (1 + Int.max value.depth body.depth)
+        in
         Ok (result, remaining)
     | E.KApp (head, arguments) | E.KTail (head, arguments) ->
         lower_call depth remaining environment head arguments
@@ -413,6 +425,5 @@ let compile ~entry source =
   | K.Erase.Postulate _ -> unsupported "the selected definition is a postulate"
   | K.Erase.Code declarations ->
       let* body = selected_function entry declarations in
-      let state = { expression = Contract_ir.State; nodes = 1; depth = 1 } in
-      let* value, _remaining = lower 1 max_nodes [ state ] body in
+      let* value, _remaining = lower 1 max_nodes [ Input_state ] body in
       Ok value.expression

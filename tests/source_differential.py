@@ -30,6 +30,15 @@ def require(condition, message):
         raise AssertionError(message)
 
 
+def shared_doubling_chain():
+    # The expanded tree is 511 nodes and the shared IR is much smaller. Both
+    # fit the 1024-node emitter limit. Source preflight counts the expansion.
+    bindings = ["let x0 : Nat := natAdd state 1 in "]
+    bindings.extend(f"let x{i} : Nat := natAdd x{i - 1} x{i - 1} in "
+                    for i in range(1, 8))
+    return "".join(bindings) + "x7"
+
+
 # Samples are (input, natural result, checked result). The natural result is
 # always a number. The checked result is None when the IR must fail with
 # intermediate overflow. That includes samples whose natural result fits
@@ -72,6 +81,22 @@ CASES = [
         (0, 0, None), (MAX, MAX, None)]),
     ("annotated_arithmetic", "((natSub state 4 : Nat) : Nat)", [
         (0, 0, 0), (9, 5, 5), (MAX, MAX - 4, MAX - 4)]),
+    ("deep_shared_doubling", shared_doubling_chain(), [
+        (0, 128, 128), (MAX // 128 - 1, MAX - 127, MAX - 127),
+        (MAX // 128, MAX + 1, None)]),
+    ("local_scope_after_inner", "let x : Nat := natAdd state 2 in "
+        "natSub (let y : Nat := natMul x 3 in natAdd y x) x", [
+        (0, 6, 6), (5, 21, 21), (MAX, 3 * (MAX + 2), None)]),
+    ("shadowed_rhs_uses_outer", "let x : Nat := natAdd state 4 in "
+        "let y : Nat := (let x : Nat := natAdd x 1 in natMul x 2) in "
+        "natSub y x", [
+        (0, 6, 6), (3, 9, 9), (MAX, MAX + 6, None)]),
+    ("unused_local_dependency_overflow", "let x : Nat := natAdd state 1 in "
+        "let ignored : Nat := natMul x 2 in state", [
+        (0, 0, 0), (MAX // 2, MAX // 2, None)]),
+    ("strict_unused_binding_inside_rhs", "let x : Nat := "
+        "(let ignored : Nat := natAdd state 1 in 7) in natAdd x x", [
+        (2, 14, 14), (MAX, 14, None)]),
 ]
 
 
@@ -88,7 +113,7 @@ def validate_corpus(cases):
 validate_corpus(CASES)
 
 
-# The authored compiler files. The harness hashes this list, so a new file in
+# The authored compiler files. Both harnesses hash this list, so a new file in
 # bin/ or lib/ must be added here and counted in VALIDATION.md.
 COMPILER_SOURCES = [
     "dune",
@@ -101,6 +126,15 @@ COMPILER_SOURCES = [
     "lib/frontend.ml",
     "lib/nat_fragment.ml",
 ]
+
+
+def check_authored_sources():
+    """Both harnesses call this before they hash COMPILER_SOURCES."""
+    authored = sorted(str(path.relative_to(ROOT)) for path in
+                      [*(ROOT / "bin").glob("*.ml"), *(ROOT / "lib").glob("*.ml")])
+    require(authored == sorted(name for name in COMPILER_SOURCES
+                               if name.endswith(".ml")),
+            "authored OCaml file set changed: update COMPILER_SOURCES and VALIDATION.md")
 
 
 def invoke(compiler, source, *args):
@@ -184,11 +218,7 @@ def main():
     started = time.monotonic()
     try:
         report["compiler_sha256"] = hashlib.sha256(compiler.read_bytes()).hexdigest()
-        authored = sorted(str(path.relative_to(ROOT)) for path in
-                          [*(ROOT / "bin").glob("*.ml"), *(ROOT / "lib").glob("*.ml")])
-        require(authored == sorted(name for name in COMPILER_SOURCES
-                                   if name.endswith(".ml")),
-                "authored OCaml file set changed: update COMPILER_SOURCES and VALIDATION.md")
+        check_authored_sources()
         report["compiler_source_sha256"] = {
             name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
             for name in COMPILER_SOURCES

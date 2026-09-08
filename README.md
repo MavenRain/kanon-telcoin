@@ -4,7 +4,7 @@ This workspace contains an OCaml compiler prototype that checks Kanon source and
 
 The source input is a closed `Nat -> Nat` state transition. A fixed counter wrapper supplies persistent state, constructor ownership, ABI dispatch, and checked failure behavior. This is the first executable slice of the [language design](TELCOIN-LANGUAGE-DESIGN.md). Kan-only foundations, Lean 4 parity, full Telcoin execution conformance, and OCaml compilation-speed parity remain open.
 
-The current [validation record](VALIDATION.md) reports a clean build, 37 local EVM checks, 53 checked-source/IR comparisons, four CLI regression groups, and the first compilation timing calibration.
+The current [validation record](VALIDATION.md) reports a clean build, 73 OCaml checks, 43 local EVM checks, 66 checked-source/IR comparisons, four CLI regression groups, and the first compilation timing calibration.
 
 The existing Kanon checkout was left untouched. The compiler uses 34 committed source and license files from `c4180626123687858ff83408bab801c6f87e3e71`, stored under `third_party/kanon`. [kanon-source.lock.json](kanon-source.lock.json) records SHA-256 hashes. The [Telcoin profile](telcoin-target.json) pins source configuration at `66e0d14a52b042a383b666d4b4da0079ec5b4871`; it does not assert a live network's software version.
 
@@ -48,7 +48,9 @@ The backend is a partial implementation of natural-number computation within EVM
 
 Before kernel evaluation, a lexical and syntax preflight checks every declaration, including unused declarations. It admits only bare Nat annotations, explicit single-argument functions, local variables, literals, strict lets, and saturated native arithmetic. It caps numeric lexemes at 78 digits, tokens and expanded arithmetic at 4,096 nodes, nesting at 128, and a conservative estimate of arithmetic values at 16,384 bits. This prevents short repeated-squaring lets from constructing huge integers during checking.
 
-Additional limits are 65,536 source bytes, 20,000 checker budget polls, and 1,024 emitter nodes. The packaged driver imposes a 10-second compiler timeout. The emitter also enforces the 24,576-byte runtime limit and 49,152-byte creation limit. These are prototype restrictions and do not establish the unrestricted expressiveness goal. Let substitution can duplicate pure computations and gas cost; it preserves evaluation of supported strict RHS arithmetic.
+Additional limits are 65,536 source bytes, 20,000 checker budget polls, and 1,024 emitter nodes. The packaged driver imposes a 10-second compiler timeout. The emitter also enforces the 24,576-byte runtime limit and 49,152-byte creation limit. These are prototype restrictions and do not establish the unrestricted expressiveness goal.
+
+Let bindings evaluate their right-hand side once, store the checked value in a fresh memory slot, and reuse it through scoped local references. Unused bindings still evaluate and can revert on overflow. The source preflight retains its conservative expanded-arithmetic limits because it runs before kernel checking. The [shared-let example](examples/shared_let.kan) computes `(state + 1)` once before squaring it.
 
 **Local execution validation.**
 
@@ -60,7 +62,7 @@ python3 -P tests/evm_integration.py
 
 The test harness owns a fresh Anvil process bound to loopback, deploys only to that ephemeral process, and shuts it down. It checks bytecode installation, ABI behavior, ownership, storage, logs, arithmetic edge cases, refusals, and rollback. Some boundary fixtures seed state with Anvil's test-only storage RPC. No wallet, public RPC, or live deployment is involved.
 
-The fixed differential corpus runs 20 programs at 53 input states through
+The fixed differential corpus runs 25 programs at 66 input states through
 the checked source evaluator, the lowered IR evaluator, and EVM execution.
 It covers shared and shadowed lets, annotations, unused strict bindings,
 natural subtraction, and overflow. Source evaluation bypasses erasure and
@@ -79,7 +81,7 @@ fits uint256. The evaluators do not apply the contract wrapper's final state
 bound or model gas. The corpus harness gives each evaluator call ten seconds.
 The EVM suite gives each compiler call twenty seconds.
 Kernel evaluation itself has no budget polling. These are bounded regression
-checks, with [recorded evidence](evidence/source-differential/source-ir.json),
+checks, with [recorded evidence](evidence/let-sharing/source-ir.json),
 rather than a proof of compiler preservation.
 
 The installed Anvil version predates finalized Prague. Passing these tests supplies baseline EVM evidence for the opcodes used. It does not validate Telcoin's current execution dependencies, custom precompiles, fee distribution, or gas over-reservation policy. The report records this limitation and the actual engine version.
