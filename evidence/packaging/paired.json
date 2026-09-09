@@ -1,0 +1,3437 @@
+{
+  "artifact_comparison": {
+    "determinism": "Every repetition must have the same seven artifact hashes for its label and workload.",
+    "files": [
+      "creation.hex",
+      "runtime.hex",
+      "contract.json",
+      "abi.json",
+      "source-map.json",
+      "source.kan",
+      "manifest.json"
+    ],
+    "provenance_rule": "Every packager hash and each present verifier hash must match the actual script. The candidate verifier hash is required; the baseline may predate it.",
+    "rule": "Six files must match byte-for-byte. Parsed manifests must match after removing only packager_sha256 and source_verifier_sha256.",
+    "sha256": {
+      "counter.kan": {
+        "baseline": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "261a78eaa9931f8fafce673cdc999056059d6e7980e2483293c53ddd5f95deac",
+          "creation.hex": "6a0dcdfb472d5655cc7ea2f5c48003b5c148ec1825c4ae6747b583d4d8f622e2",
+          "manifest.json": "ab5907ee4075aa46d2465e01ff7e1cbc09221557b12de04d69ad81088180371d",
+          "runtime.hex": "317a4f57cc0d7bfd7cd2cafbe95b093a27fd7c1cd87797d821b1c8815a178068",
+          "source-map.json": "a49f6165326ddf826c6446abc4f8b9a5720913fae36f99f56a7fa289d49c7605",
+          "source.kan": "5d6b1febe22a559e8eaebf150df100b5356c156ed6ebfb61ebcfb60bf6427fff"
+        },
+        "candidate": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "261a78eaa9931f8fafce673cdc999056059d6e7980e2483293c53ddd5f95deac",
+          "creation.hex": "6a0dcdfb472d5655cc7ea2f5c48003b5c148ec1825c4ae6747b583d4d8f622e2",
+          "manifest.json": "5dff839e91611f35af079129943333883b3e44a33369739c0be3db8973a5b84d",
+          "runtime.hex": "317a4f57cc0d7bfd7cd2cafbe95b093a27fd7c1cd87797d821b1c8815a178068",
+          "source-map.json": "a49f6165326ddf826c6446abc4f8b9a5720913fae36f99f56a7fa289d49c7605",
+          "source.kan": "5d6b1febe22a559e8eaebf150df100b5356c156ed6ebfb61ebcfb60bf6427fff"
+        }
+      },
+      "shared_let.kan": {
+        "baseline": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "325f8be222feb586b903092eeb0955ea5103a2da63de535b57f29dfbf8a1ae64",
+          "creation.hex": "5d1f2d344cba50a2c2bcf0be5267c015ddfa9f84f8d20c2f9b7603b092b51c14",
+          "manifest.json": "ec2a7de535935fe24e35a359698a4502467905a5acab4a718b4ec5b01ae00b89",
+          "runtime.hex": "bf59cfcbf3833974882bb9aa71f5e875412263e9aa5d05d6d368bbd1ff34d9ae",
+          "source-map.json": "c34af71d60cc548aec9d93c4cc0be4b625a035f9a4f196fb25ba2be28bb0a47a",
+          "source.kan": "1bdecc91e9896ca72ed7ce26c8a916b2e4fefca8c7fd8d8fed2b1ffefc200dec"
+        },
+        "candidate": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "325f8be222feb586b903092eeb0955ea5103a2da63de535b57f29dfbf8a1ae64",
+          "creation.hex": "5d1f2d344cba50a2c2bcf0be5267c015ddfa9f84f8d20c2f9b7603b092b51c14",
+          "manifest.json": "99ff2bbe5567d327988566d936adaef0ffce80da888784f4a86be008057ce061",
+          "runtime.hex": "bf59cfcbf3833974882bb9aa71f5e875412263e9aa5d05d6d368bbd1ff34d9ae",
+          "source-map.json": "c34af71d60cc548aec9d93c4cc0be4b625a035f9a4f196fb25ba2be28bb0a47a",
+          "source.kan": "1bdecc91e9896ca72ed7ce26c8a916b2e4fefca8c7fd8d8fed2b1ffefc200dec"
+        }
+      },
+      "step_two.kan": {
+        "baseline": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "e53b887fc3a0432269b31625fac17e649aef8c3a073bee8db27ff5ed31855b4f",
+          "creation.hex": "34abb81b824724c3e1f678d1a5535110aaf128bddc2a66b1f014d0ba46fb3276",
+          "manifest.json": "024a2e12d35de137cd484897706d719660f6d5c5c68d55a08467cdfb2d73fcda",
+          "runtime.hex": "e31604455f69bca5de3ab26d43224c4ff5bf983bf0c2249dcba9777d2ce25589",
+          "source-map.json": "a49f6165326ddf826c6446abc4f8b9a5720913fae36f99f56a7fa289d49c7605",
+          "source.kan": "502b27458de0df39e4747de2f1370e53e783c437a143a6364e5237609ad20b75"
+        },
+        "candidate": {
+          "abi.json": "bcfafd24c93dabd0d2fd4c4f7d5e7774e449cfb32dba7f2ceb7ef29bde91ee91",
+          "contract.json": "e53b887fc3a0432269b31625fac17e649aef8c3a073bee8db27ff5ed31855b4f",
+          "creation.hex": "34abb81b824724c3e1f678d1a5535110aaf128bddc2a66b1f014d0ba46fb3276",
+          "manifest.json": "26a0aa8a6b8c6bbac5761efe4b39cb93c980f0f2e02d654bfb8b1cf3cb8e1830",
+          "runtime.hex": "e31604455f69bca5de3ab26d43224c4ff5bf983bf0c2249dcba9777d2ce25589",
+          "source-map.json": "a49f6165326ddf826c6446abc4f8b9a5720913fae36f99f56a7fa289d49c7605",
+          "source.kan": "502b27458de0df39e4747de2f1370e53e783c437a143a6364e5237609ad20b75"
+        }
+      }
+    }
+  },
+  "baseline": {
+    "requested_ref": "c8b0ea51469f323577310c50c17963ea9bd70185",
+    "resolved_commit": "c8b0ea51469f323577310c50c17963ea9bd70185",
+    "scope": "Only the two packaging scripts come from this commit; all other inputs use the same current snapshot."
+  },
+  "caveats": [
+    "This is a packaging calibration on three small existing arithmetic workloads, with no timing-based pass threshold.",
+    "It does not establish an OCaml compilation-speed, Lean parity, Kan foundation, or Telcoin conformance claim.",
+    "Both script versions use one identical current compiler/input snapshot; this does not compare complete historical compiler versions.",
+    "Warm filesystem caches and installed dependencies are reused. Cold or incremental compiler builds are outside this measurement.",
+    "Host load, scheduling, power state, and thermal behavior can affect short process measurements. No CPU pinning or machine isolation is imposed.",
+    "Alternating paired runs reduces order bias but does not remove measurement noise; ratios are informational."
+  ],
+  "classification": "paired_packaging_calibration_only_no_performance_gate",
+  "completed_utc": "2026-09-09T22:46:19.260359+00:00",
+  "host": {
+    "cpu_count": 12,
+    "load_average_at_end": [
+      24.9208984375,
+      20.98681640625,
+      24.3251953125
+    ],
+    "load_average_at_start": [
+      19.8232421875,
+      19.89697265625,
+      24.0107421875
+    ],
+    "machine": "arm64",
+    "os": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "processor": "arm"
+  },
+  "measurement_scope": {
+    "cache_state": "Existing dependencies and filesystem caches reused; all private input snapshots copied before timing; every output directory is fresh.",
+    "excluded": "Compiler build, snapshot preparation and hashing, baseline extraction, artifact comparison, and report serialization.",
+    "included": "Python startup, full source-lock verification, compiler startup/checking/emission, and all seven artifact writes into a fresh output directory."
+  },
+  "pairs": [
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 344.6435,
+      "candidate_ms": 242.210459,
+      "candidate_over_baseline": 0.702785513146193,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "warmup",
+      "round": 0,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 200.366667,
+      "candidate_ms": 93.838875,
+      "candidate_over_baseline": 0.4683357586618936,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "warmup",
+      "round": 0,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 160.920084,
+      "candidate_ms": 76.86425,
+      "candidate_over_baseline": 0.47765479665049143,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "warmup",
+      "round": 0,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 136.52475,
+      "candidate_ms": 73.756,
+      "candidate_over_baseline": 0.5402390409065022,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "warmup",
+      "round": 1,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 147.638416,
+      "candidate_ms": 82.236167,
+      "candidate_over_baseline": 0.5570106292660305,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "warmup",
+      "round": 1,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 141.955042,
+      "candidate_ms": 75.937084,
+      "candidate_over_baseline": 0.5349375614287797,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "warmup",
+      "round": 1,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 132.932875,
+      "candidate_ms": 71.163292,
+      "candidate_over_baseline": 0.535332527788931,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 2,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 141.903584,
+      "candidate_ms": 73.637709,
+      "candidate_over_baseline": 0.5189277601332466,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 2,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 139.48175,
+      "candidate_ms": 76.171667,
+      "candidate_over_baseline": 0.546104899028009,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 2,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 147.364875,
+      "candidate_ms": 80.777916,
+      "candidate_over_baseline": 0.5481490484079059,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 3,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 140.51625,
+      "candidate_ms": 82.036417,
+      "candidate_over_baseline": 0.5838215651214717,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 3,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 156.425875,
+      "candidate_ms": 85.887208,
+      "candidate_over_baseline": 0.5490601091411508,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 3,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 147.487584,
+      "candidate_ms": 96.09,
+      "candidate_over_baseline": 0.6515124690089168,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 4,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 422.644875,
+      "candidate_ms": 204.326667,
+      "candidate_over_baseline": 0.48344763910836486,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 4,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 280.987459,
+      "candidate_ms": 114.03675,
+      "candidate_over_baseline": 0.4058428458189659,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 4,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 213.560167,
+      "candidate_ms": 130.186792,
+      "candidate_over_baseline": 0.6096024077373942,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 5,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 165.834083,
+      "candidate_ms": 343.012042,
+      "candidate_over_baseline": 2.0684049731803325,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 5,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 143.546417,
+      "candidate_ms": 84.278916,
+      "candidate_over_baseline": 0.5871196074507384,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 5,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 162.391375,
+      "candidate_ms": 87.649125,
+      "candidate_over_baseline": 0.5397400262175254,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 6,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 191.566083,
+      "candidate_ms": 99.81075,
+      "candidate_over_baseline": 0.5210251649818408,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 6,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 169.290167,
+      "candidate_ms": 101.144291,
+      "candidate_over_baseline": 0.5974611094807414,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 6,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 219.631209,
+      "candidate_ms": 89.347375,
+      "candidate_over_baseline": 0.40680637058278907,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 7,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 175.1065,
+      "candidate_ms": 367.990833,
+      "candidate_over_baseline": 2.1015258314225913,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 7,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 193.328167,
+      "candidate_ms": 122.98,
+      "candidate_over_baseline": 0.6361204469496677,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 7,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 182.183916,
+      "candidate_ms": 97.569917,
+      "candidate_over_baseline": 0.5355572497409705,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 8,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 173.138708,
+      "candidate_ms": 120.770458,
+      "candidate_over_baseline": 0.6975358624023,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 8,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 216.202916,
+      "candidate_ms": 86.496708,
+      "candidate_over_baseline": 0.40007188432185625,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 8,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 151.487917,
+      "candidate_ms": 93.083125,
+      "candidate_over_baseline": 0.6144590726665018,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 9,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 174.739333,
+      "candidate_ms": 93.075542,
+      "candidate_over_baseline": 0.5326536412955176,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 9,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 162.651708,
+      "candidate_ms": 117.5915,
+      "candidate_over_baseline": 0.7229650487285383,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 9,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 148.258708,
+      "candidate_ms": 84.349041,
+      "candidate_over_baseline": 0.5689314451600374,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 10,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 278.972083,
+      "candidate_ms": 120.997708,
+      "candidate_over_baseline": 0.43372694034047843,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 10,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 164.167583,
+      "candidate_ms": 92.684375,
+      "candidate_over_baseline": 0.5645717218118512,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 10,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 151.29225,
+      "candidate_ms": 90.904625,
+      "candidate_over_baseline": 0.6008544720565661,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 11,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 155.067125,
+      "candidate_ms": 78.243916,
+      "candidate_over_baseline": 0.5045809419630369,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 11,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 148.995333,
+      "candidate_ms": 86.574166,
+      "candidate_over_baseline": 0.5810528709647571,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 11,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 134.065375,
+      "candidate_ms": 80.597958,
+      "candidate_over_baseline": 0.6011839969865449,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 12,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 147.128958,
+      "candidate_ms": 78.579291,
+      "candidate_over_baseline": 0.5340844662272398,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 12,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 141.672125,
+      "candidate_ms": 81.276917,
+      "candidate_over_baseline": 0.5736973098977657,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 12,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 149.914916,
+      "candidate_ms": 82.580917,
+      "candidate_over_baseline": 0.550851904556315,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 13,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 140.870625,
+      "candidate_ms": 80.989,
+      "candidate_over_baseline": 0.5749175883900566,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 13,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 149.227875,
+      "candidate_ms": 78.941,
+      "candidate_over_baseline": 0.5289963420037979,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 13,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 143.731208,
+      "candidate_ms": 82.856416,
+      "candidate_over_baseline": 0.5764678190139472,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 14,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 149.318375,
+      "candidate_ms": 82.963541,
+      "candidate_over_baseline": 0.5556150808632896,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 14,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 139.956167,
+      "candidate_ms": 72.851292,
+      "candidate_over_baseline": 0.5205293454485647,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 14,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 276.283458,
+      "candidate_ms": 119.963875,
+      "candidate_over_baseline": 0.43420578223687933,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 15,
+      "workload": "counter.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 134.076834,
+      "candidate_ms": 91.892416,
+      "candidate_over_baseline": 0.6853713147791065,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 15,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 128.644208,
+      "candidate_ms": 75.640125,
+      "candidate_over_baseline": 0.5879792504921791,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "phase": "measured",
+      "round": 15,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 133.559,
+      "candidate_ms": 74.541917,
+      "candidate_over_baseline": 0.5581197598065274,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 16,
+      "workload": "step_two.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 132.044083,
+      "candidate_ms": 75.100667,
+      "candidate_over_baseline": 0.5687545045089222,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 16,
+      "workload": "shared_let.kan"
+    },
+    {
+      "all_seven_artifacts_verified": true,
+      "baseline_ms": 135.92725,
+      "candidate_ms": 73.589667,
+      "candidate_over_baseline": 0.5413900965406128,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "phase": "measured",
+      "round": 16,
+      "workload": "counter.kan"
+    }
+  ],
+  "provenance": {
+    "benchmark_script_sha256": "1ff385b0158cd569f774be5f87bb383646e072c5d57435c6ac4a5c72aa66968d",
+    "common_input_sha256": {
+      "_build/default/bin/main.exe": "3d3301f7d5e31c1295044746195c617e44de0d49d7540020f79e74976b83ed75",
+      "bin/dune": "06f6b140b4bb6e8d92b59de97e1bd7a3e85fd187dd98c1369d9b20e743cc20c0",
+      "bin/main.ml": "4cea7fa95d6e6cf1187604712efd8cf667656f170f0ecc014fa91033a7af3a16",
+      "dune": "6667ad12654ce90248a6069046368e6e8248aca243a72ddf3fd1fce750a9be86",
+      "dune-project": "60e27fdbe7a0843df3b4ecfaaefe1d394b5e09f315aeca6384dd65d30dd52c09",
+      "examples/counter.kan": "5d6b1febe22a559e8eaebf150df100b5356c156ed6ebfb61ebcfb60bf6427fff",
+      "examples/shared_let.kan": "1bdecc91e9896ca72ed7ce26c8a916b2e4fefca8c7fd8d8fed2b1ffefc200dec",
+      "examples/step_two.kan": "502b27458de0df39e4747de2f1370e53e783c437a143a6364e5237609ad20b75",
+      "kanon-source.lock.json": "480e8fe14f513b9105b08e0bd504aa7fd936a7e4a24f0889fd1cef218757a978",
+      "lib/contract_ir.ml": "0246f41b37d7de499b5f30d8560625cabf386f4aae030a7b14eebc6957e5756d",
+      "lib/dune": "05a075480430d025c27cae2bfb427edcde4c195c6b38496a9ebf52b22d7bdb30",
+      "lib/evm.ml": "8d81112f1b1096f1914674ccd81d73263950a73cdc8365eb2a8eb1e4a8438c2a",
+      "lib/frontend.ml": "3023add21bd8f1d1e9ec05014acda59cec20ebeeb01b4a643bd130da41c5e2a2",
+      "lib/nat_fragment.ml": "8d22837609b2d4ffc00d47c64f9791e275a7085d4c97bc4afa5f8c9a090c6f3f",
+      "telcoin-target.json": "21db2aa48ec35661927de11975def612b5fe9cdd05927e0ba4165aa1e2a8aff0",
+      "third_party/kanon/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "third_party/kanon/LICENSE-MIT": "ef9ccd4eb670dc121b7b3d5b45dea0e8bec7b0ca4319f6665f9cafafff1c1d16",
+      "third_party/kanon/SPEC.md": "04d78a573f26466af4545d71beba5d8eb8eb49e4dc0d6859d19bc1153aa97323",
+      "third_party/kanon/lib/bignum.ml": "7159dd7e75fa08a5fc272cba76a8ec6214c7d190151dabf7db1a13bf5ecddd72",
+      "third_party/kanon/lib/budget.ml": "7d8b2afc86883415c892d6fea0e56c2115e4d859b6b6daa21c611b4e9517f028",
+      "third_party/kanon/lib/budget.mli": "b830149c9eb6d9362786d2e92c2dc8322f4d31f7b4cfc960ac6e1681d385578f",
+      "third_party/kanon/lib/check.ml": "cdc3712bf5ed0fa49d8dae34ea946d85a195ea94b25235c821b155570010e335",
+      "third_party/kanon/lib/conv.ml": "e73e707bcdac54808d8f8a1d9e9a174062edf0afd970972dee2c6d024f6bbe39",
+      "third_party/kanon/lib/dune": "0e60f3ebdbbf7182dba98dd70eb2d494bd83d6e2934dd1f344f98e4b0e392ec0",
+      "third_party/kanon/lib/erase.ml": "cb0078fa34f9527f79d7052e6cf39224717f2e1b891b0aa409c2374ffc3989c7",
+      "third_party/kanon/lib/error.ml": "44c9c263479575ec04db5056404a5940d6bb5514a5b9e1ec6215385c6eccb5b6",
+      "third_party/kanon/lib/eterm.ml": "028ff6e790f9c391463b961f7a3eac12e105d484285cfde1597e52c5b9ac69c7",
+      "third_party/kanon/lib/eval.ml": "155ddf7578d4ad68352505064616bed6afa7a260a88f3ddf1722b95fa6a6bd18",
+      "third_party/kanon/lib/global.ml": "2e5d2d932dfddcb329bcfdf237df87a70f2d79820470dc236e337ec6d275c329",
+      "third_party/kanon/lib/level.ml": "344bb9819870d8c459154ac8109ba1d69a4ee4312670f3887c6ed30d3dbca448",
+      "third_party/kanon/lib/level.mli": "c143b2b97e417724a81f8e83548b946d3339917488758b4d5fbf9da9e72e6811",
+      "third_party/kanon/lib/literal.ml": "80554b1d98c8dde3b474023a01ac57cc4abcaba2a5f20b707041cc5f0361b617",
+      "third_party/kanon/lib/order.ml": "d2cc3258fde25b61ba33093eaf19112c319329dc5b46ba029b3f042c14388e94",
+      "third_party/kanon/lib/positivity.ml": "97cb5fc9484ecaec360b4be1ac42f0668ae767aad25efc10ddbc1d4143185471",
+      "third_party/kanon/lib/pp.ml": "69618578ebb33a3d9803e604760252c77c64681aef2d847f3e1b40f9464e3895",
+      "third_party/kanon/lib/prim.ml": "5224df4f75e499b8fb962fad2a256b31086fcc9de5ab2f353eb90f61a8408aaa",
+      "third_party/kanon/lib/quantity.ml": "bf3f633c40a0dbb362cf85ca41b798ae0c9e1d4eca7e09f9b6f482bab2bfbb8b",
+      "third_party/kanon/lib/rules.ml": "b625cec31061ca79f77669889039e4ae2658393911e39076dc65189022f702ab",
+      "third_party/kanon/lib/shape.ml": "dafd7741b4332dcab6faba9cb9afb131fb3654172e0d375b1edd1046e69f7f7b",
+      "third_party/kanon/lib/spec_count.ml": "9a4cb97373ddbabb6156b04f92cc41803ee1b714391ccb669cf38e60d36437e6",
+      "third_party/kanon/lib/term.ml": "2de6729958bfbc3af10ed2e9c51d6591ab40fa16bd19b7acea1fbf37adf60690",
+      "third_party/kanon/lib/totality.ml": "046c608584ac21d465d46b05119a89dca5488a15113359eea30ed318a3f7c028",
+      "third_party/kanon/lib/value.ml": "997f4634df60744c49555e896c1de8d60e51a1086e731e547b48450def9c68c7",
+      "third_party/kanon/surface/dune": "c45bcc3721c5711848423635d08c3d5e41691bb32adda95efa0be17b7f3a3be4",
+      "third_party/kanon/surface/elab.ml": "050b7f83fb47f7b4f14387389fc13df728bac00a42d76c05d474b7bafe706437",
+      "third_party/kanon/surface/lexer.ml": "9e4a2e3ffa01228358f719c9578438231e5ef06e94e759713330da27f5edfcab",
+      "third_party/kanon/surface/parser.ml": "edc1ede2296297a194e8590bf2474156f30b88090e5055a4830a2714782f78f2",
+      "third_party/kanon/surface/syntax.ml": "ae240fb4c6350786d8919bb1fd91edb6c40d6359ac738c86295933be9a1352ae",
+      "third_party/kanon/surface/token.ml": "28066712011a4833c3aadb6069019a07a81b051f6f633ef6f110bfca83466c1c"
+    },
+    "script_sha256": {
+      "baseline": {
+        "scripts/kanonc.py": "f4cf24fe99a9510479ef0bc2c0e75b63b184c71641bf3d43cb7ace6b2649260e",
+        "scripts/vendor_kanon.py": "cb92cd7a58162500ea97bc1f2dad2edf96a21c45898bd033d9564ee8e3485ec7"
+      },
+      "candidate": {
+        "scripts/kanonc.py": "e45f6b6b421e56d641abc62451964e702fede73806b0c36ce45eb3edf4e3021c",
+        "scripts/vendor_kanon.py": "7f12ab7677c2a2df276ea867a21fa3cf6ae7b966e767e68fa6ab740326568675"
+      }
+    }
+  },
+  "python": {
+    "executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "executable_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634",
+    "full_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "implementation": "CPython",
+    "version": "3.14.7"
+  },
+  "results": {
+    "counter.kan": {
+      "baseline": {
+        "max_ms": 280.987459,
+        "median_ms": 155.067125,
+        "min_ms": 134.065375,
+        "p95_ms": 280.987459,
+        "samples_ms": [
+          141.903584,
+          147.364875,
+          280.987459,
+          165.834083,
+          162.391375,
+          193.328167,
+          173.138708,
+          151.487917,
+          164.167583,
+          155.067125,
+          134.065375,
+          149.227875,
+          149.318375,
+          276.283458,
+          135.92725
+        ]
+      },
+      "candidate": {
+        "max_ms": 343.012042,
+        "median_ms": 87.649125,
+        "min_ms": 73.589667,
+        "p95_ms": 343.012042,
+        "samples_ms": [
+          73.637709,
+          80.777916,
+          114.03675,
+          343.012042,
+          87.649125,
+          122.98,
+          120.770458,
+          93.083125,
+          92.684375,
+          78.243916,
+          80.597958,
+          78.941,
+          82.963541,
+          119.963875,
+          73.589667
+        ]
+      },
+      "candidate_median_over_baseline_median": 0.5652334432588467,
+      "paired_candidate_over_baseline": {
+        "max_ratio": 2.0684049731803325,
+        "median_ratio": 0.5481490484079059,
+        "min_ratio": 0.4058428458189659,
+        "p95_ratio": 2.0684049731803325,
+        "samples_ratio": [
+          0.5189277601332466,
+          0.5481490484079059,
+          0.4058428458189659,
+          2.0684049731803325,
+          0.5397400262175254,
+          0.6361204469496677,
+          0.6975358624023,
+          0.6144590726665018,
+          0.5645717218118512,
+          0.5045809419630369,
+          0.6011839969865449,
+          0.5289963420037979,
+          0.5556150808632896,
+          0.43420578223687933,
+          0.5413900965406128
+        ]
+      }
+    },
+    "shared_let.kan": {
+      "baseline": {
+        "max_ms": 422.644875,
+        "median_ms": 156.425875,
+        "min_ms": 128.644208,
+        "p95_ms": 422.644875,
+        "samples_ms": [
+          132.932875,
+          156.425875,
+          422.644875,
+          213.560167,
+          169.290167,
+          175.1065,
+          182.183916,
+          162.651708,
+          278.972083,
+          151.29225,
+          141.672125,
+          140.870625,
+          143.731208,
+          128.644208,
+          132.044083
+        ]
+      },
+      "candidate": {
+        "max_ms": 367.990833,
+        "median_ms": 90.904625,
+        "min_ms": 71.163292,
+        "p95_ms": 367.990833,
+        "samples_ms": [
+          71.163292,
+          85.887208,
+          204.326667,
+          130.186792,
+          101.144291,
+          367.990833,
+          97.569917,
+          117.5915,
+          120.997708,
+          90.904625,
+          81.276917,
+          80.989,
+          82.856416,
+          75.640125,
+          75.100667
+        ]
+      },
+      "candidate_median_over_baseline_median": 0.5811354739105663,
+      "paired_candidate_over_baseline": {
+        "max_ratio": 2.1015258314225913,
+        "median_ratio": 0.5749175883900566,
+        "min_ratio": 0.43372694034047843,
+        "p95_ratio": 2.1015258314225913,
+        "samples_ratio": [
+          0.535332527788931,
+          0.5490601091411508,
+          0.48344763910836486,
+          0.6096024077373942,
+          0.5974611094807414,
+          2.1015258314225913,
+          0.5355572497409705,
+          0.7229650487285383,
+          0.43372694034047843,
+          0.6008544720565661,
+          0.5736973098977657,
+          0.5749175883900566,
+          0.5764678190139472,
+          0.5879792504921791,
+          0.5687545045089222
+        ]
+      }
+    },
+    "step_two.kan": {
+      "baseline": {
+        "max_ms": 219.631209,
+        "median_ms": 147.487584,
+        "min_ms": 133.559,
+        "p95_ms": 219.631209,
+        "samples_ms": [
+          139.48175,
+          140.51625,
+          147.487584,
+          143.546417,
+          191.566083,
+          219.631209,
+          216.202916,
+          174.739333,
+          148.258708,
+          148.995333,
+          147.128958,
+          149.914916,
+          139.956167,
+          134.076834,
+          133.559
+        ]
+      },
+      "candidate": {
+        "max_ms": 99.81075,
+        "median_ms": 84.349041,
+        "min_ms": 72.851292,
+        "p95_ms": 99.81075,
+        "samples_ms": [
+          76.171667,
+          82.036417,
+          96.09,
+          84.278916,
+          99.81075,
+          89.347375,
+          86.496708,
+          93.075542,
+          84.349041,
+          86.574166,
+          78.579291,
+          82.580917,
+          72.851292,
+          91.892416,
+          74.541917
+        ]
+      },
+      "candidate_median_over_baseline_median": 0.5719060460031673,
+      "paired_candidate_over_baseline": {
+        "max_ratio": 0.6853713147791065,
+        "median_ratio": 0.550851904556315,
+        "min_ratio": 0.40007188432185625,
+        "p95_ratio": 0.6853713147791065,
+        "samples_ratio": [
+          0.546104899028009,
+          0.5838215651214717,
+          0.6515124690089168,
+          0.5871196074507384,
+          0.5210251649818408,
+          0.40680637058278907,
+          0.40007188432185625,
+          0.5326536412955176,
+          0.5689314451600374,
+          0.5810528709647571,
+          0.5340844662272398,
+          0.550851904556315,
+          0.5205293454485647,
+          0.6853713147791065,
+          0.5581197598065274
+        ]
+      }
+    }
+  },
+  "schema": 1,
+  "settings": {
+    "bound": 1000000,
+    "entry": "step",
+    "environment_overrides": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONSAFEPATH": "1"
+    },
+    "measured_runs_per_label_per_workload": 15,
+    "order": "Alternate baseline/candidate order each round; rotate workload order each round.",
+    "parallelism": "One packaged compilation at a time.",
+    "percentile_method": "Nearest rank: sorted samples at ceil(n * 0.95) - 1.",
+    "timeout_per_command_seconds": 60,
+    "warmups_per_label_per_workload": 2,
+    "workloads": [
+      "counter.kan",
+      "step_two.kan",
+      "shared_let.kan"
+    ]
+  },
+  "timestamp_utc": "2026-09-09T22:46:04.720715+00:00",
+  "timings": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/counter.kan/baseline",
+      "elapsed_ms": 344.6435,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/counter.kan/candidate",
+      "elapsed_ms": 242.210459,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/step_two.kan/baseline",
+      "elapsed_ms": 200.366667,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/step_two.kan/candidate",
+      "elapsed_ms": 93.838875,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/shared_let.kan/baseline",
+      "elapsed_ms": 160.920084,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/00/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/00/shared_let.kan/candidate",
+      "elapsed_ms": 76.86425,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 0,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/step_two.kan/candidate",
+      "elapsed_ms": 73.756,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/step_two.kan/baseline",
+      "elapsed_ms": 136.52475,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/shared_let.kan/candidate",
+      "elapsed_ms": 82.236167,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/shared_let.kan/baseline",
+      "elapsed_ms": 147.638416,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/counter.kan/candidate",
+      "elapsed_ms": 75.937084,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/01/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/01/counter.kan/baseline",
+      "elapsed_ms": 141.955042,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "warmup",
+      "returncode": 0,
+      "round": 1,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/shared_let.kan/baseline",
+      "elapsed_ms": 132.932875,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/shared_let.kan/candidate",
+      "elapsed_ms": 71.163292,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/counter.kan/baseline",
+      "elapsed_ms": 141.903584,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/counter.kan/candidate",
+      "elapsed_ms": 73.637709,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/step_two.kan/baseline",
+      "elapsed_ms": 139.48175,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/02/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/02/step_two.kan/candidate",
+      "elapsed_ms": 76.171667,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 2,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/counter.kan/candidate",
+      "elapsed_ms": 80.777916,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/counter.kan/baseline",
+      "elapsed_ms": 147.364875,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/step_two.kan/candidate",
+      "elapsed_ms": 82.036417,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/step_two.kan/baseline",
+      "elapsed_ms": 140.51625,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/shared_let.kan/candidate",
+      "elapsed_ms": 85.887208,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/03/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/03/shared_let.kan/baseline",
+      "elapsed_ms": 156.425875,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 3,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/step_two.kan/baseline",
+      "elapsed_ms": 147.487584,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/step_two.kan/candidate",
+      "elapsed_ms": 96.09,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/shared_let.kan/baseline",
+      "elapsed_ms": 422.644875,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/shared_let.kan/candidate",
+      "elapsed_ms": 204.326667,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/counter.kan/baseline",
+      "elapsed_ms": 280.987459,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/04/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/04/counter.kan/candidate",
+      "elapsed_ms": 114.03675,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 4,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/shared_let.kan/candidate",
+      "elapsed_ms": 130.186792,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/shared_let.kan/baseline",
+      "elapsed_ms": 213.560167,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/counter.kan/candidate",
+      "elapsed_ms": 343.012042,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/counter.kan/baseline",
+      "elapsed_ms": 165.834083,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/step_two.kan/candidate",
+      "elapsed_ms": 84.278916,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/05/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/05/step_two.kan/baseline",
+      "elapsed_ms": 143.546417,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 5,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/counter.kan/baseline",
+      "elapsed_ms": 162.391375,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/counter.kan/candidate",
+      "elapsed_ms": 87.649125,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/step_two.kan/baseline",
+      "elapsed_ms": 191.566083,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/step_two.kan/candidate",
+      "elapsed_ms": 99.81075,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/shared_let.kan/baseline",
+      "elapsed_ms": 169.290167,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/06/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/06/shared_let.kan/candidate",
+      "elapsed_ms": 101.144291,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 6,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/step_two.kan/candidate",
+      "elapsed_ms": 89.347375,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/step_two.kan/baseline",
+      "elapsed_ms": 219.631209,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/shared_let.kan/candidate",
+      "elapsed_ms": 367.990833,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/shared_let.kan/baseline",
+      "elapsed_ms": 175.1065,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/counter.kan/candidate",
+      "elapsed_ms": 122.98,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/07/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/07/counter.kan/baseline",
+      "elapsed_ms": 193.328167,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 7,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/shared_let.kan/baseline",
+      "elapsed_ms": 182.183916,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/shared_let.kan/candidate",
+      "elapsed_ms": 97.569917,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/counter.kan/baseline",
+      "elapsed_ms": 173.138708,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/counter.kan/candidate",
+      "elapsed_ms": 120.770458,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/step_two.kan/baseline",
+      "elapsed_ms": 216.202916,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/08/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/08/step_two.kan/candidate",
+      "elapsed_ms": 86.496708,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 8,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/counter.kan/candidate",
+      "elapsed_ms": 93.083125,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/counter.kan/baseline",
+      "elapsed_ms": 151.487917,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/step_two.kan/candidate",
+      "elapsed_ms": 93.075542,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/step_two.kan/baseline",
+      "elapsed_ms": 174.739333,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/shared_let.kan/candidate",
+      "elapsed_ms": 117.5915,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/09/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/09/shared_let.kan/baseline",
+      "elapsed_ms": 162.651708,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 9,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/step_two.kan/baseline",
+      "elapsed_ms": 148.258708,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/step_two.kan/candidate",
+      "elapsed_ms": 84.349041,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/shared_let.kan/baseline",
+      "elapsed_ms": 278.972083,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/shared_let.kan/candidate",
+      "elapsed_ms": 120.997708,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/counter.kan/baseline",
+      "elapsed_ms": 164.167583,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/10/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/10/counter.kan/candidate",
+      "elapsed_ms": 92.684375,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 10,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/shared_let.kan/candidate",
+      "elapsed_ms": 90.904625,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/shared_let.kan/baseline",
+      "elapsed_ms": 151.29225,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/counter.kan/candidate",
+      "elapsed_ms": 78.243916,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/counter.kan/baseline",
+      "elapsed_ms": 155.067125,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/step_two.kan/candidate",
+      "elapsed_ms": 86.574166,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/11/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/11/step_two.kan/baseline",
+      "elapsed_ms": 148.995333,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 11,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/counter.kan/baseline",
+      "elapsed_ms": 134.065375,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/counter.kan/candidate",
+      "elapsed_ms": 80.597958,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/step_two.kan/baseline",
+      "elapsed_ms": 147.128958,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/step_two.kan/candidate",
+      "elapsed_ms": 78.579291,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/shared_let.kan/baseline",
+      "elapsed_ms": 141.672125,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/12/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/12/shared_let.kan/candidate",
+      "elapsed_ms": 81.276917,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 12,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/step_two.kan/candidate",
+      "elapsed_ms": 82.580917,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/step_two.kan/baseline",
+      "elapsed_ms": 149.914916,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/shared_let.kan/candidate",
+      "elapsed_ms": 80.989,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/shared_let.kan/baseline",
+      "elapsed_ms": 140.870625,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/counter.kan/candidate",
+      "elapsed_ms": 78.941,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/13/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/13/counter.kan/baseline",
+      "elapsed_ms": 149.227875,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 13,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/shared_let.kan/baseline",
+      "elapsed_ms": 143.731208,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/shared_let.kan/candidate",
+      "elapsed_ms": 82.856416,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/counter.kan/baseline",
+      "elapsed_ms": 149.318375,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/counter.kan/candidate",
+      "elapsed_ms": 82.963541,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "counter.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/step_two.kan/baseline",
+      "elapsed_ms": 139.956167,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/14/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/14/step_two.kan/candidate",
+      "elapsed_ms": 72.851292,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 14,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/counter.kan/candidate",
+      "elapsed_ms": 119.963875,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/counter.kan/baseline",
+      "elapsed_ms": 276.283458,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "counter.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/step_two.kan/candidate",
+      "elapsed_ms": 91.892416,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/step_two.kan/baseline",
+      "elapsed_ms": 134.076834,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/shared_let.kan/candidate",
+      "elapsed_ms": 75.640125,
+      "label": "candidate",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/15/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/15/shared_let.kan/baseline",
+      "elapsed_ms": 128.644208,
+      "label": "baseline",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 15,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/step_two.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/step_two.kan/baseline",
+      "elapsed_ms": 133.559,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/step_two.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/step_two.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/step_two.kan/candidate",
+      "elapsed_ms": 74.541917,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "step_two.kan",
+      "workload_order_in_round": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/shared_let.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/shared_let.kan/baseline",
+      "elapsed_ms": 132.044083,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/shared_let.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/shared_let.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/shared_let.kan/candidate",
+      "elapsed_ms": 75.100667,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "shared_let.kan",
+      "workload_order_in_round": 1
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/baseline/scripts/kanonc.py",
+        "<temporary>/baseline/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/counter.kan/baseline/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/counter.kan/baseline",
+      "elapsed_ms": 135.92725,
+      "label": "baseline",
+      "order_in_pair": 0,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-P",
+        "<temporary>/candidate/scripts/kanonc.py",
+        "<temporary>/candidate/examples/counter.kan",
+        "--entry",
+        "step",
+        "--bound",
+        "1000000",
+        "--out",
+        "<temporary>/samples/16/counter.kan/candidate/artifact"
+      ],
+      "cwd": "<temporary>/samples/16/counter.kan/candidate",
+      "elapsed_ms": 73.589667,
+      "label": "candidate",
+      "order_in_pair": 1,
+      "phase": "measured",
+      "returncode": 0,
+      "round": 16,
+      "workload": "counter.kan",
+      "workload_order_in_round": 2
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "base_commit": "c8b0ea51469f323577310c50c17963ea9bd70185",
+  "build": {
+    "command": [
+      "dunecho",
+      "build"
+    ],
+    "exit_code": 0,
+    "scope": "Fresh workspace clone of the clean baseline; compiler sources unchanged afterward.",
+    "stdout": "OK build: 0 errors, 0 warnings",
+    "toolchain_bin": "$HOME/.opam/zxcaml-p1/bin"
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-P",
+        "scripts/vendor_kanon.py"
+      ],
+      "exit_code": 0,
+      "name": "pinned snapshot",
+      "stderr": [],
+      "stdout": [
+        "Verified Kanon c4180626123687858ff83408bab801c6f87e3e71: 34 source files"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-P",
+        "tests/compiler_cli.py"
+      ],
+      "exit_code": 0,
+      "name": "existing CLI regressions",
+      "stderr": [],
+      "stdout": [
+        "PASS byte-preserving artifact reruns and conflict refusal",
+        "PASS source-map spans align with emitted instruction boundaries",
+        "PASS reference evaluator validates even unused inputs",
+        "PASS expensive constant expression rejected before kernel checking"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-P",
+        "tests/packaging.py"
+      ],
+      "exit_code": 0,
+      "name": "packaging regressions",
+      "stderr": [],
+      "stdout": [
+        "PASS seven artifacts, complete provenance hashes, CRLF bytes, deterministic reruns from an unrelated working directory",
+        "PASS a shadowing module beside the scripts is ignored under -P and PYTHONSAFEPATH",
+        "PASS conflicting output is refused without changing artifacts",
+        "PASS a corrupt source verifier is refused with the documented exit code",
+        "PASS concurrent packagers publish one consistent artifact set",
+        "PASS changed source content rejected by packager and standalone verifier before publication",
+        "PASS extra snapshot file rejected by packager and standalone verifier before publication",
+        "PASS missing snapshot file rejected by packager and standalone verifier before publication",
+        "PASS wrong source pin rejected by packager and standalone verifier before publication",
+        "PASS malformed JSON lock rejected by packager and standalone verifier before publication",
+        "PASS missing lock pin rejected by packager and standalone verifier before publication",
+        "PASS list-shaped lock rejected by packager and standalone verifier before publication",
+        "PASS list-shaped lock hashes rejected by packager and standalone verifier before publication",
+        "PASS restored snapshot verifies and reproduces the original artifacts"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-P",
+        "scripts/benchmark_packaging.py",
+        "--warmups",
+        "2",
+        "--runs",
+        "15",
+        "--out",
+        "evidence/packaging/paired.json"
+      ],
+      "exit_code": 0,
+      "name": "paired calibration",
+      "stderr": [],
+      "stdout": [
+        "Packaging calibration only, no performance gate: evidence/packaging/paired.json",
+        "counter.kan: baseline=155.067 ms candidate=87.649 ms paired median ratio=0.548",
+        "step_two.kan: baseline=147.488 ms candidate=84.349 ms paired median ratio=0.551",
+        "shared_let.kan: baseline=156.426 ms candidate=90.905 ms paired median ratio=0.575"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "-P",
+        "scripts/benchmark.py",
+        "--toolchain",
+        "$HOME/.opam/zxcaml-p1/bin",
+        "--warmups",
+        "0",
+        "--runs",
+        "1",
+        "--out",
+        "artifacts/packaging-calibration-smoke.json"
+      ],
+      "exit_code": 0,
+      "name": "four-way calibration smoke",
+      "stderr": [],
+      "stdout": [
+        "Calibration only, no parity gate: artifacts/packaging-calibration-smoke.json",
+        "packaged_kanon: median=82.708 ms p95=82.708 ms",
+        "raw_kanon: median=5.318 ms p95=5.318 ms",
+        "ocamlc_zarith: median=27.882 ms p95=27.882 ms",
+        "ocamlopt_zarith: median=317.347 ms p95=317.347 ms"
+      ]
+    }
+  ],
+  "compiler_binary_sha256": "3d3301f7d5e31c1295044746195c617e44de0d49d7540020f79e74976b83ed75",
+  "paired_report_sha256": "3ea1fbf206f9e4d201c15b25b6c396c87ad0ce94f9f3a6ab9cfe81ce0b30a0d7",
+  "reused_execution_evidence": [
+    {
+      "compiler_source_sha256": {
+        "bin/dune": "06f6b140b4bb6e8d92b59de97e1bd7a3e85fd187dd98c1369d9b20e743cc20c0",
+        "bin/main.ml": "4cea7fa95d6e6cf1187604712efd8cf667656f170f0ecc014fa91033a7af3a16",
+        "dune": "6667ad12654ce90248a6069046368e6e8248aca243a72ddf3fd1fce750a9be86",
+        "dune-project": "60e27fdbe7a0843df3b4ecfaaefe1d394b5e09f315aeca6384dd65d30dd52c09",
+        "lib/contract_ir.ml": "0246f41b37d7de499b5f30d8560625cabf386f4aae030a7b14eebc6957e5756d",
+        "lib/dune": "05a075480430d025c27cae2bfb427edcde4c195c6b38496a9ebf52b22d7bdb30",
+        "lib/evm.ml": "8d81112f1b1096f1914674ccd81d73263950a73cdc8365eb2a8eb1e4a8438c2a",
+        "lib/frontend.ml": "3023add21bd8f1d1e9ec05014acda59cec20ebeeb01b4a643bd130da41c5e2a2",
+        "lib/nat_fragment.ml": "8d22837609b2d4ffc00d47c64f9791e275a7085d4c97bc4afa5f8c9a090c6f3f"
+      },
+      "report": "evidence/let-sharing/source-ir.json",
+      "report_sha256": "dfcf91045d8ee836d3a02d40cb4f192980faf8ffda776562b952ed68bfaf6762",
+      "rerun": false,
+      "scope": "All nine compiler source/build inputs match the prior passing evidence."
+    },
+    {
+      "compiler_source_sha256": {
+        "bin/dune": "06f6b140b4bb6e8d92b59de97e1bd7a3e85fd187dd98c1369d9b20e743cc20c0",
+        "bin/main.ml": "4cea7fa95d6e6cf1187604712efd8cf667656f170f0ecc014fa91033a7af3a16",
+        "dune": "6667ad12654ce90248a6069046368e6e8248aca243a72ddf3fd1fce750a9be86",
+        "dune-project": "60e27fdbe7a0843df3b4ecfaaefe1d394b5e09f315aeca6384dd65d30dd52c09",
+        "lib/contract_ir.ml": "0246f41b37d7de499b5f30d8560625cabf386f4aae030a7b14eebc6957e5756d",
+        "lib/dune": "05a075480430d025c27cae2bfb427edcde4c195c6b38496a9ebf52b22d7bdb30",
+        "lib/evm.ml": "8d81112f1b1096f1914674ccd81d73263950a73cdc8365eb2a8eb1e4a8438c2a",
+        "lib/frontend.ml": "3023add21bd8f1d1e9ec05014acda59cec20ebeeb01b4a643bd130da41c5e2a2",
+        "lib/nat_fragment.ml": "8d22837609b2d4ffc00d47c64f9791e275a7085d4c97bc4afa5f8c9a090c6f3f"
+      },
+      "report": "evidence/let-sharing/evm.json",
+      "report_sha256": "d2c208baf4d58cd3244c8427766c5767901687f6a8871d9ccbc114663fafce3d",
+      "rerun": false,
+      "scope": "All nine compiler source/build inputs match the prior passing evidence."
+    }
+  ],
+  "schema": 1,
+  "source_sha256": {
+    "scripts/benchmark.py": "03c520ee1c75a6ca2853af534082062b0c27f0b0d0162934ce9616cbd6fa8739",
+    "scripts/benchmark_packaging.py": "1ff385b0158cd569f774be5f87bb383646e072c5d57435c6ac4a5c72aa66968d",
+    "scripts/kanonc.py": "e45f6b6b421e56d641abc62451964e702fede73806b0c36ce45eb3edf4e3021c",
+    "scripts/vendor_kanon.py": "7f12ab7677c2a2df276ea867a21fa3cf6ae7b966e767e68fa6ab740326568675",
+    "tests/compiler_cli.py": "2283a9589f306b149b2a45e19d4f1a87fbbdc33f28717bd16029f75291fc93dd",
+    "tests/packaging.py": "aa9282e0baef3fd6811aa6c29d4160f6921513e4f97df0fda75284a146fb5255"
+  },
+  "static_checks": [
+    "Python AST parsing",
+    "Authored whitespace and punctuation",
+    "git diff --check"
+  ],
+  "status": "passed",
+  "timestamp_utc": "2026-09-09T23:45:33.511281+00:00"
+}

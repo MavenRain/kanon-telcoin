@@ -4,7 +4,9 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
+import runpy
 import subprocess
 import sys
 
@@ -44,8 +46,12 @@ def main():
     source = args.source.read_bytes()
     if len(source) > 65_536:
         parser.error("prototype source limit is 65536 bytes")
-    subprocess.run([sys.executable, str(ROOT / "scripts/vendor_kanon.py")],
-                   check=True, stdout=subprocess.DEVNULL)
+    verifier = ROOT / "scripts/vendor_kanon.py"
+    try:
+        verify = runpy.run_path(str(verifier))["verify_snapshot"]
+    except SyntaxError as error:
+        raise ValueError(f"source verifier is unreadable: {error}") from error
+    verify(ROOT)
     completed = subprocess.run([str(compiler), args.entry, str(args.bound)],
                                input=source, capture_output=True, timeout=10)
     if completed.returncode:
@@ -62,6 +68,7 @@ def main():
         "compiler_source_sha256": {str(path.relative_to(ROOT)): sha(path.read_bytes())
                                    for path in compiler_sources},
         "packager_sha256": sha(Path(__file__).read_bytes()),
+        "source_verifier_sha256": sha(verifier.read_bytes()),
         "source_file": args.source.name,
         "source_sha256": sha(source),
         "entry": args.entry,
@@ -86,12 +93,20 @@ def main():
     outputs = {name: text.encode("utf-8") for name, text in output_text.items()}
     outputs["source.kan"] = source
     args.out.mkdir(parents=True, exist_ok=True)
-    conflicts = [name for name in outputs if (args.out / name).exists()
-                 and (args.out / name).read_bytes() != outputs[name]]
-    if conflicts:
-        parser.error(f"output differs; choose a new directory: {', '.join(conflicts)}")
-    for name, data in outputs.items():
-        (args.out / name).write_bytes(data)
+    # One exclusive marker covers the conflict scan and the writes, so two
+    # packagers cannot interleave artifacts from different compilations.
+    lock_path = args.out / ".kanonc.lock"
+    handle = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    try:
+        conflicts = [name for name in outputs if (args.out / name).exists()
+                     and (args.out / name).read_bytes() != outputs[name]]
+        if conflicts:
+            parser.error(f"output differs; choose a new directory: {', '.join(conflicts)}")
+        for name, data in outputs.items():
+            (args.out / name).write_bytes(data)
+    finally:
+        os.close(handle)
+        lock_path.unlink()
     print(f"Compiled {args.source} to {args.out} ({(len(artifact['runtimeBytecode']) - 2) // 2} runtime bytes)")
     return 0
 

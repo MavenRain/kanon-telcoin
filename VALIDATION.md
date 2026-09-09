@@ -173,3 +173,82 @@ and gas use, without establishing a general performance bound. No compilation
 latency measurement was rerun. The existing limits on Kan-only foundations,
 Lean parity, compiler proofs, and pinned Telcoin execution conformance still
 apply.
+
+**Packaging startup, 2026-09-08.** Packaging now calls the source-snapshot
+verifier in its own process instead of launching another Python interpreter.
+Each invocation still checks the exact pin, file inventory, and every source
+hash before compilation. Absolute-path loading supports `-P` and
+`PYTHONSAFEPATH=1` from unrelated working directories. The artifact manifest
+adds `source_verifier_sha256`, and the existing four-way calibration also
+records that hash.
+
+| Check | Result |
+| --- | --- |
+| `dunecho build` on a fresh workspace copy | Passed, zero errors and warnings. |
+| `python3 -P scripts/vendor_kanon.py` | All 34 pinned files verified. |
+| `python3 -P tests/compiler_cli.py` | All four existing regression groups passed. |
+| `python3 -P tests/packaging.py` | All fourteen new regression groups passed. |
+| Paired packaging calibration, two warmups and 15 measured runs per version per example | All 102 compilations and 51 artifact comparisons passed. |
+| Existing four-way calibration with zero warmups and one run | Passed as a CLI/provenance smoke check; no timing claim uses that sample. |
+| Independent review of packaging regressions and paired calibration | Seven defects found; six fixed in this slice, and the seventh fixed by regenerating the calibration receipt. |
+| `git diff --check` | Passed. |
+
+The review fixed these defects:
+
+- A source lock that is not an object of string hashes now fails with the
+  documented exit code instead of a traceback.
+- A source verifier that does not compile now fails with the documented exit
+  code instead of a traceback.
+- Rejection checks now require the tool diagnostic prefix and no traceback.
+- The safe-path group now plants a real shadowing module beside the scripts.
+- Concurrent packagers into one directory now serialise on an exclusive marker.
+- Five assertions now name the defect instead of passing child output alone.
+- The calibration receipt no longer records a report path outside the
+  repository.
+
+The new regressions check exactly seven artifacts, complete provenance hashes,
+CRLF source bytes, deterministic reruns, refusal to overwrite conflicting
+output, a refused corrupt source verifier, and one consistent artifact set from
+two concurrent packagers. A shadowing module beside the scripts is loaded
+without a safe path and ignored under `-P` and `PYTHONSAFEPATH=1`. Eight
+isolated mutations cover changed, missing, and extra snapshot files, an
+incorrect pin, malformed JSON, a missing pin field, and two lock shapes that
+are not an object of string hashes. Both the
+standalone verifier and the packager reject each mutation. Existing artifacts
+stay byte-identical, and a fresh output directory is never published on those
+failures. Restoring the snapshot reproduces the original artifact bytes.
+
+The [paired report](evidence/packaging/paired.json) compares packaging scripts
+from commit `c8b0ea51469f323577310c50c17963ea9bd70185` with the new scripts.
+Both versions use identical copied compiler binaries, compiler sources,
+upstream snapshots, target profiles, and example inputs. Timing includes
+process startup, verification, source checking, emission, and all artifact
+writes into fresh output directories. Setup and artifact comparisons run
+outside the timed interval. Version order alternates and example order
+rotates each round.
+
+| Example | Previous median | New median | Median paired new/previous ratio |
+| --- | ---: | ---: | ---: |
+| `counter.kan` | 155.067 ms | 87.649 ms | 0.548 |
+| `step_two.kan` | 147.488 ms | 84.349 ms | 0.551 |
+| `shared_let.kan` | 156.426 ms | 90.905 ms | 0.575 |
+
+Median paired elapsed time fell by 42.5% to 45.2% across these examples. The
+ratio of medians is a different statistic, also recorded in the report.
+All six non-manifest artifacts match byte-for-byte across versions. Manifests
+match after removing only the separately verified packager and verifier
+hashes. All seven files remain identical across repetitions of each version.
+
+This is a local calibration with warm filesystem caches and installed
+dependencies, not a performance gate. The host's one-minute load average rose
+from 19.82 to 24.92 during the run. Two of the 45 measured pairs were slower
+after the change, and the report retains every sample and nearest-rank p95.
+These three small arithmetic examples do not establish representative workload
+performance, cold or incremental build speed, or OCaml compilation parity.
+
+The compiler and emitter sources are unchanged in this increment. Their nine
+source/build-file hashes still match the existing source/IR and EVM evidence;
+those execution suites were not rerun for this packaging-only change. The
+[validation receipt](evidence/packaging/validation.json) records current test
+and script hashes, captured check results, and that reuse check. Pinned Telcoin
+execution and the foundation obligations remain open.

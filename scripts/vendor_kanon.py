@@ -21,6 +21,28 @@ def git(source, *args):
     ).stdout
 
 
+def verify_snapshot(root=ROOT):
+    """Verify the pin, exact inventory, and every file hash on each call."""
+    root = Path(root)
+    dest = root / "third_party" / "kanon"
+    lock = json.loads((root / "kanon-source.lock.json").read_text())
+    if not isinstance(lock, dict) or not isinstance(lock.get("sha256"), dict):
+        raise ValueError("malformed source lock")
+    if not all(isinstance(name, str) and isinstance(digest, str)
+               for name, digest in lock["sha256"].items()):
+        raise ValueError("malformed source lock")
+    if lock["commit"] != PIN:
+        raise ValueError("unexpected source pin")
+    expected = set(lock["sha256"])
+    actual = {str(p.relative_to(dest)) for p in dest.rglob("*") if p.is_file()}
+    if actual != expected:
+        raise ValueError(f"snapshot file inventory differs: {sorted(actual ^ expected)}")
+    for name, digest in lock["sha256"].items():
+        if hashlib.sha256((dest / name).read_bytes()).hexdigest() != digest:
+            raise ValueError(f"snapshot hash mismatch: {name}")
+    return len(expected)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--import-from", type=Path)
@@ -48,17 +70,8 @@ def main():
             "selection": "Committed lib/, surface/, licenses, and SPEC.md; no working-tree changes",
             "sha256": rows,
         }, indent=2, sort_keys=True) + "\n")
-    lock = json.loads(LOCK.read_text())
-    if lock["commit"] != PIN:
-        raise ValueError("unexpected source pin")
-    expected = set(lock["sha256"])
-    actual = {str(p.relative_to(DEST)) for p in DEST.rglob("*") if p.is_file()}
-    if actual != expected:
-        raise ValueError(f"snapshot file inventory differs: {sorted(actual ^ expected)}")
-    for name, digest in lock["sha256"].items():
-        if hashlib.sha256((DEST / name).read_bytes()).hexdigest() != digest:
-            raise ValueError(f"snapshot hash mismatch: {name}")
-    print(f"Verified Kanon {PIN}: {len(expected)} source files")
+    count = verify_snapshot()
+    print(f"Verified Kanon {PIN}: {count} source files")
 
 
 if __name__ == "__main__":

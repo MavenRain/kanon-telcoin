@@ -237,7 +237,8 @@ def benchmark(args):
                "ocaml": {"source": REFERENCE, "sha256": sha256(REFERENCE.encode())},
                "compiler_binary_sha256": sha256(compiler.read_bytes()),
                "benchmark_script_sha256": sha256(Path(__file__).read_bytes()),
-               "packaging_script_sha256": sha256((ROOT / "scripts/kanonc.py").read_bytes())}
+               "packaging_script_sha256": sha256((ROOT / "scripts/kanonc.py").read_bytes()),
+               "source_verifier_sha256": sha256((ROOT / "scripts/vendor_kanon.py").read_bytes())}
     for path in ("kanon-source.lock.json", "telcoin-target.json"):
         if (ROOT / path).is_file():
             sources[path] = sha256((ROOT / path).read_bytes())

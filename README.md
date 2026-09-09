@@ -4,7 +4,7 @@ This workspace contains an OCaml compiler prototype that checks Kanon source and
 
 The source input is a closed `Nat -> Nat` state transition. A fixed counter wrapper supplies persistent state, constructor ownership, ABI dispatch, and checked failure behavior. This is the first executable slice of the [language design](TELCOIN-LANGUAGE-DESIGN.md). Kan-only foundations, Lean 4 parity, full Telcoin execution conformance, and OCaml compilation-speed parity remain open.
 
-The current [validation record](VALIDATION.md) reports a clean build, 73 OCaml checks, 43 local EVM checks, 66 checked-source/IR comparisons, four CLI regression groups, and the first compilation timing calibration.
+The current [validation record](VALIDATION.md) reports a clean build, 73 OCaml checks, 43 local EVM checks, 66 checked-source/IR comparisons, four CLI regression groups, fourteen packaging regression groups, and compilation timing calibrations.
 
 The existing Kanon checkout was left untouched. The compiler uses 34 committed source and license files from `c4180626123687858ff83408bab801c6f87e3e71`, stored under `third_party/kanon`. [kanon-source.lock.json](kanon-source.lock.json) records SHA-256 hashes. The [Telcoin profile](telcoin-target.json) pins source configuration at `66e0d14a52b042a383b666d4b4da0079ec5b4871`; it does not assert a live network's software version.
 
@@ -27,7 +27,14 @@ def step : (state : Nat) -> Nat :=
 
 Select another entry with `--entry NAME`. The output directory can be reused when its artifacts are identical; choose a new directory for changed output. Compilation does not deploy a contract.
 
-The generated files are `creation.hex`, `runtime.hex`, `contract.json`, `abi.json`, `source-map.json`, `source.kan`, and `manifest.json`. Hex files include `0x`. The manifest records source and bytecode hashes, the compiler binary hash, the upstream source lock, the state bound, and the target profile. Source maps use byte offsets and IR node identifiers; surface line information is not available yet.
+The generated files are `creation.hex`, `runtime.hex`, `contract.json`, `abi.json`, `source-map.json`, `source.kan`, and `manifest.json`. Hex files include `0x`. The manifest records source and bytecode hashes, the compiler binary hash, the packaging and source-verifier script hashes, the upstream source lock, the state bound, and the target profile. Source maps use byte offsets and IR node identifiers; surface line information is not available yet.
+
+Every packaging invocation verifies the source pin, exact snapshot inventory,
+and all snapshot hashes in process. The verifier is loaded from the packaging
+script's directory, including when Python runs with `-P` or
+`PYTHONSAFEPATH=1`. Verification uses no cache. Existing output directories
+from an older packager require a new directory because their provenance
+manifests differ.
 
 **Supported semantics.**
 
@@ -56,6 +63,7 @@ Let bindings evaluate their right-hand side once, store the checked value in a f
 
 ```sh
 python3 -P tests/compiler_cli.py
+python3 -P tests/packaging.py
 python3 -P tests/source_differential.py
 python3 -P tests/evm_integration.py
 ```
@@ -93,6 +101,20 @@ python3 scripts/benchmark.py
 ```
 
 This records full packaged compilation, the raw compiler pipeline, and OCaml bytecode/native baselines. A tiny arithmetic calibration does not satisfy the frozen multi-workload performance contract in the design brief. Performance claims must include source checking and all required artifact work; an isolated emitter time is insufficient.
+
+To compare the current packager with the revision before in-process
+verification, using identical compiler inputs and fresh output directories:
+
+```sh
+python3 -P scripts/benchmark_packaging.py --warmups 2 --runs 15
+```
+
+The paired calibration alternates execution order across the three committed
+examples. It checks all artifact bytes and permits only the recorded
+packager and verifier provenance to differ. Its report includes raw timings,
+source and tool hashes, and host information. The
+[recorded comparison](evidence/packaging/paired.json) is a packaging startup
+measurement, not a representative workload or OCaml parity gate.
 
 The [foundation inventory](FOUNDATION-OBLIGATIONS.md) identifies the first dependent-induction obligation and the existing trusted rules. In particular, the reused kernel's opaque built-in `Nat` and native arithmetic are not established Kan derivations. The [conditional bridge](NAT-FRAGMENT-BRIDGE.md) connects a bounded declared-`N` source schema to the initiality model; construction admissibility remains open.
 
